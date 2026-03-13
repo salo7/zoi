@@ -3,79 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Δρ. Ζωή Σαλωνίτη — Γενική Ιατρική · Βελονισμός · Κινέζικη Βοτανοθεραπεία</title>
+    <title>Ζωή Σαλωνίτη — Γενική Ιατρική · Βελονισμός · Κινέζικη Βοτανοθεραπεία</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         /* ── Reset & Base ── */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --cream:    #FAF7F2;
-            --warm:     #F3EDE3;
-            --sage:     #7A9E7E;
-            --sage-dark:#5B7F5F;
-            --earth:    #8B7355;
-            --text:     #3D3225;
-            --text-light:#6B5D4F;
-            --white:    #FFFFFF;
-            --shadow:   0 2px 20px rgba(61,50,37,.08);
+            --ivory:      #F5F0E8;
+            --ivory-warm: #EDE6D8;
+            --cream:      #FAF7F2;
+            --forest:     #3A5A40;
+            --forest-deep:#2D4A34;
+            --forest-light:#4A7050;
+            --clay:       #B07D62;
+            --clay-light: #C49A80;
+            --clay-dark:  #8E5F46;
+            --gold:       #C4A265;
+            --gold-light: #D4BA85;
+            --text:       #2C2418;
+            --text-mid:   #5A4E3E;
+            --text-light: #7D7060;
+            --sage-bg:    #D4DCCA;
+            --white:      #FFFFFF;
+            --shadow-sm:  0 2px 12px rgba(44,36,24,.06);
+            --shadow-md:  0 8px 30px rgba(44,36,24,.08);
+            --shadow-lg:  0 20px 60px rgba(44,36,24,.12);
+            --radius:     12px;
+            --radius-lg:  24px;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'DM Sans', system-ui, sans-serif;
             color: var(--text);
-            background: var(--cream);
-            line-height: 1.7;
+            background: var(--ivory);
+            line-height: 1.75;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Grain texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: .028;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 200px 200px;
         }
 
         /* ── Typography ── */
-        h1, h2, h3, h4 { font-weight: 600; line-height: 1.3; }
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        h4, h5 {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            font-weight: 600;
+        }
+
         h2.section-title {
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            margin-bottom: .4em;
-            color: var(--sage-dark);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            margin-bottom: .3em;
+            color: var(--forest);
         }
         .section-subtitle {
             color: var(--text-light);
-            font-size: 1.05rem;
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
+            font-size: 1rem;
+            max-width: 550px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        /* Decorative line for section titles */
+        .section-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .section-ornament::before,
+        .section-ornament::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+        .section-ornament span {
+            font-size: .75rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
         }
 
         /* ── Layout helpers ── */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-        section { padding: 5rem 0; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 6rem 0; position: relative; }
         .text-center { text-align: center; }
 
         /* ── Navigation ── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(250,247,242,.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(122,158,126,.12);
-            transition: box-shadow .3s;
+            background: rgba(245,240,232,.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(58,90,64,.06);
+            transition: box-shadow .4s, background .4s;
         }
-        nav.scrolled { box-shadow: 0 1px 12px rgba(61,50,37,.08); }
+        nav.scrolled {
+            box-shadow: 0 1px 20px rgba(44,36,24,.06);
+            background: rgba(245,240,232,.95);
+        }
         nav .container {
             display: flex; align-items: center; justify-content: space-between;
-            height: 70px;
+            height: 72px;
         }
         .logo {
-            font-size: 1.15rem; font-weight: 700; color: var(--sage-dark);
-            text-decoration: none; letter-spacing: -.02em;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.3rem; font-weight: 600; color: var(--forest);
+            text-decoration: none; letter-spacing: -.01em;
         }
-        .logo span { color: var(--earth); font-weight: 400; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .logo span {
+            color: var(--clay);
+            font-weight: 400;
+            font-style: italic;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a {
-            text-decoration: none; color: var(--text-light); font-size: .92rem;
-            font-weight: 500; transition: color .2s; position: relative;
+            text-decoration: none; color: var(--text-mid);
+            font-size: .88rem; font-weight: 500;
+            letter-spacing: .02em;
+            transition: color .3s; position: relative;
         }
-        .nav-links a:hover { color: var(--sage-dark); }
+        .nav-links a:hover { color: var(--forest); }
         .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0; width: 0;
-            height: 2px; background: var(--sage); border-radius: 1px; transition: width .25s;
+            content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 1.5px; background: var(--gold);
+            border-radius: 1px; transition: width .3s;
         }
         .nav-links a:hover::after { width: 100%; }
 
@@ -84,285 +159,511 @@
             flex-direction: column; gap: 5px; padding: 4px;
         }
         .hamburger span {
-            display: block; width: 24px; height: 2px; background: var(--text);
+            display: block; width: 22px; height: 1.5px; background: var(--text);
             border-radius: 2px; transition: .3s;
         }
 
         /* ── Hero ── */
         .hero {
             min-height: 100vh; display: flex; align-items: center;
-            padding-top: 70px;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--warm) 50%, #E8E0D0 100%);
+            padding-top: 72px;
+            background: var(--ivory);
             position: relative; overflow: hidden;
         }
+        /* Subtle radial gradient for depth */
         .hero::before {
-            content: ''; position: absolute; top: -20%; right: -10%;
-            width: 600px; height: 600px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(122,158,126,.1) 0%, transparent 70%);
+            content: ''; position: absolute; top: -30%; right: -15%;
+            width: 800px; height: 800px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(58,90,64,.06) 0%, transparent 65%);
+            pointer-events: none;
         }
+        .hero::after {
+            content: ''; position: absolute; bottom: -20%; left: -10%;
+            width: 600px; height: 600px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(176,125,98,.05) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        /* Decorative vertical line */
+        .hero-line {
+            position: absolute;
+            top: 72px; bottom: 0; left: 50%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--gold-light) 30%, var(--gold-light) 70%, transparent);
+            opacity: .2;
+            pointer-events: none;
+        }
+
         .hero .container {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center;
+            position: relative; z-index: 1;
         }
         .hero-text h1 {
-            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
             color: var(--text); margin-bottom: .5em;
+            font-weight: 500;
         }
         .hero-text h1 em {
-            font-style: normal; color: var(--sage-dark);
+            font-style: italic; color: var(--forest);
+            font-weight: 500;
+        }
+        .hero-tagline {
+            display: flex; align-items: center; gap: .8rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero-tagline::before {
+            content: '';
+            width: 32px; height: 1px;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+        .hero-tagline span {
+            font-size: .78rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--clay);
+            font-weight: 600;
         }
         .hero-text p {
-            font-size: 1.1rem; color: var(--text-light);
-            margin-bottom: 2rem; max-width: 480px;
+            font-size: 1.05rem; color: var(--text-light);
+            margin-bottom: 2.5rem; max-width: 500px;
+            line-height: 1.85;
         }
         .hero-photo {
             display: flex; justify-content: center; align-items: center;
         }
         .hero-photo .photo-frame {
-            width: 360px; height: 440px; border-radius: 200px 200px 40px 40px;
-            background: linear-gradient(160deg, var(--sage) 0%, var(--sage-dark) 100%);
+            width: 380px; height: 480px;
+            border-radius: 220px 220px 32px 32px;
+            background: linear-gradient(170deg, var(--forest) 0%, var(--forest-deep) 100%);
             display: flex; align-items: flex-end; justify-content: center;
             position: relative; overflow: hidden;
-            box-shadow: 0 20px 60px rgba(122,158,126,.25);
+            box-shadow: 0 30px 80px rgba(58,90,64,.2), 0 0 0 1px rgba(58,90,64,.1);
+        }
+        /* Gold border accent on photo */
+        .photo-frame::before {
+            content: '';
+            position: absolute; inset: -1px;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(170deg, var(--gold-light) 0%, transparent 50%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: .4;
         }
         .photo-frame .placeholder-text {
-            color: rgba(255,255,255,.7); font-size: .85rem;
+            color: rgba(255,255,255,.5); font-size: .85rem;
             position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
             text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            letter-spacing: .05em;
         }
         .photo-frame .silhouette {
             width: 70%; height: 75%;
-            background: linear-gradient(to top, rgba(255,255,255,.12), rgba(255,255,255,.04));
+            background: linear-gradient(to top, rgba(255,255,255,.08), rgba(255,255,255,.02));
             border-radius: 160px 160px 0 0;
         }
 
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
         .btn {
-            display: inline-block; padding: .85rem 2rem; border-radius: 50px;
-            text-decoration: none; font-weight: 600; font-size: .95rem;
-            transition: all .3s; cursor: pointer; border: none;
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .9rem 2.2rem; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: .9rem;
+            transition: all .4s cubic-bezier(.25,.8,.25,1);
+            cursor: pointer; border: none;
+            letter-spacing: .02em;
         }
         .btn-primary {
-            background: var(--sage); color: var(--white);
-            box-shadow: 0 4px 15px rgba(122,158,126,.3);
+            background: var(--forest); color: var(--white);
+            box-shadow: 0 4px 20px rgba(58,90,64,.25);
         }
         .btn-primary:hover {
-            background: var(--sage-dark); transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(122,158,126,.4);
+            background: var(--forest-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(58,90,64,.3);
         }
         .btn-outline {
-            background: transparent; color: var(--sage-dark);
-            border: 2px solid var(--sage); margin-left: 1rem;
+            background: transparent; color: var(--forest);
+            border: 1.5px solid var(--forest);
         }
-        .btn-outline:hover { background: var(--sage); color: var(--white); }
+        .btn-outline:hover {
+            background: var(--forest); color: var(--white);
+        }
 
         /* ── About ── */
-        .about { background: var(--white); }
+        .about { background: var(--cream); }
+        .about::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+            opacity: .3;
+        }
         .about-grid {
-            display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: center;
+            display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center;
+        }
+        .about-image-wrap {
+            position: relative;
         }
         .about-image {
-            width: 100%; aspect-ratio: 4/3; border-radius: 20px;
-            background: linear-gradient(135deg, var(--warm) 0%, #ddd5c8 100%);
+            width: 100%; aspect-ratio: 3/4; border-radius: var(--radius-lg);
+            background: linear-gradient(145deg, var(--ivory-warm) 0%, #d8cfbf 100%);
             display: flex; align-items: center; justify-content: center;
             color: var(--text-light); font-size: .9rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            overflow: hidden;
         }
-        .about-text h2 { color: var(--sage-dark); margin-bottom: .5em; }
-        .about-text p { margin-bottom: 1em; color: var(--text-light); }
-        .about-text p:last-of-type { margin-bottom: 1.5em; }
+        /* Decorative frame behind image */
+        .about-image-wrap::after {
+            content: '';
+            position: absolute;
+            top: -12px; left: -12px; right: 12px; bottom: 12px;
+            border: 1px solid var(--gold-light);
+            border-radius: var(--radius-lg);
+            opacity: .3;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .about-text h2 { color: var(--forest); margin-bottom: .6em; }
+        .about-text p {
+            margin-bottom: 1.2em; color: var(--text-mid);
+            font-size: .97rem;
+        }
+        .about-text p:last-of-type { margin-bottom: 2em; }
         .credentials { list-style: none; }
         .credentials li {
-            padding: .5rem 0; padding-left: 1.5em; position: relative;
-            color: var(--text-light); font-size: .95rem;
+            padding: .55rem 0; padding-left: 1.8em; position: relative;
+            color: var(--text-mid); font-size: .93rem;
         }
         .credentials li::before {
-            content: ''; position: absolute; left: 0; top: .9em;
-            width: 8px; height: 8px; border-radius: 50%; background: var(--sage);
+            content: '';
+            position: absolute; left: 0; top: 1em;
+            width: 8px; height: 8px;
+            border: 1.5px solid var(--gold);
+            border-radius: 50%;
+            background: transparent;
         }
 
         /* ── Mission ── */
         .mission {
-            background: linear-gradient(135deg, var(--sage-dark) 0%, #4a6e4e 100%);
+            background: var(--forest-deep);
             color: var(--white); text-align: center;
+            position: relative; overflow: hidden;
         }
-        .mission h2 { color: rgba(255,255,255,.9); }
+        /* Subtle botanical pattern overlay */
+        .mission::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 20% 50%, rgba(196,162,101,.08) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 50%, rgba(176,125,98,.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .mission .container { position: relative; z-index: 1; }
+        .mission h2 { color: var(--gold-light); }
+        .mission .section-ornament span { color: var(--gold-light); }
+        .mission .section-ornament::before,
+        .mission .section-ornament::after { background: var(--gold-light); opacity: .4; }
         .mission-text {
-            max-width: 750px; margin: 0 auto; font-size: 1.15rem;
-            line-height: 1.9; color: rgba(255,255,255,.85);
+            max-width: 720px; margin: 0 auto; font-size: 1.15rem;
+            line-height: 2; color: rgba(255,255,255,.78);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
         }
-        .mission-text em { font-style: normal; color: var(--white); font-weight: 600; }
+        .mission-text em {
+            font-style: normal; color: var(--gold-light);
+            font-weight: 500;
+        }
         .mission-icon {
-            width: 60px; height: 60px; margin: 0 auto 1.5rem;
-            border-radius: 50%; border: 2px solid rgba(255,255,255,.3);
+            width: 56px; height: 56px; margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            border: 1px solid rgba(196,162,101,.3);
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            color: var(--gold-light);
         }
 
         /* ── Services ── */
-        .services { background: var(--cream); }
+        .services { background: var(--ivory); }
         .services-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
         }
         .service-card {
-            background: var(--white); border-radius: 16px; padding: 2.5rem 2rem;
-            text-align: center; transition: transform .3s, box-shadow .3s;
-            border: 1px solid rgba(122,158,126,.08);
+            background: var(--cream);
+            border-radius: var(--radius-lg); padding: 2.8rem 2.2rem;
+            text-align: left;
+            transition: transform .4s cubic-bezier(.25,.8,.25,1), box-shadow .4s;
+            border: 1px solid rgba(58,90,64,.05);
+            position: relative;
+            overflow: hidden;
         }
+        .service-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--forest), var(--gold));
+            opacity: 0;
+            transition: opacity .4s;
+        }
+        .service-card:hover::before { opacity: 1; }
         .service-card:hover {
-            transform: translateY(-4px); box-shadow: var(--shadow);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
         }
         .service-icon {
-            width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, rgba(122,158,126,.12), rgba(122,158,126,.06));
-            display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+            width: 52px; height: 52px; border-radius: 50%; margin-bottom: 1.5rem;
+            background: var(--forest);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            box-shadow: 0 4px 12px rgba(58,90,64,.15);
         }
-        .service-card h3 { font-size: 1.15rem; margin-bottom: .6em; color: var(--sage-dark); }
-        .service-card p { font-size: .93rem; color: var(--text-light); }
+        .service-card h3 {
+            font-size: 1.4rem; margin-bottom: .5em; color: var(--forest);
+            font-weight: 500;
+        }
+        .service-card p { font-size: .92rem; color: var(--text-light); line-height: 1.8; }
 
         /* ── Testimonials ── */
-        .testimonials { background: var(--white); }
+        .testimonials { background: var(--cream); }
+        .testimonials::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+            opacity: .3;
+        }
         .testimonials-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
         }
         .testimonial-card {
-            background: var(--cream); border-radius: 16px; padding: 2rem;
+            background: var(--white);
+            border-radius: var(--radius-lg); padding: 2.2rem;
             position: relative;
+            border: 1px solid rgba(58,90,64,.04);
         }
         .testimonial-card::before {
-            content: '\201C'; position: absolute; top: .5rem; left: 1.2rem;
-            font-size: 3.5rem; color: var(--sage); opacity: .3; font-family: Georgia, serif;
+            content: '\201C';
+            position: absolute; top: 1rem; left: 1.5rem;
+            font-size: 4rem; color: var(--gold);
+            opacity: .25;
+            font-family: 'Cormorant Garamond', Georgia, serif;
             line-height: 1;
         }
         .testimonial-card p {
-            font-size: .95rem; color: var(--text-light); font-style: italic;
-            margin-bottom: 1.2rem; padding-top: 1rem;
+            font-size: .95rem; color: var(--text-mid);
+            font-style: italic;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem; padding-top: 1.2rem;
         }
         .testimonial-author {
             display: flex; align-items: center; gap: .8rem;
         }
         .author-avatar {
             width: 40px; height: 40px; border-radius: 50%;
-            background: var(--sage); display: flex; align-items: center;
-            justify-content: center; color: var(--white); font-weight: 600;
-            font-size: .85rem;
+            background: var(--forest); display: flex; align-items: center;
+            justify-content: center; color: var(--gold-light); font-weight: 600;
+            font-size: .8rem;
         }
         .author-info { font-size: .85rem; }
-        .author-info strong { display: block; color: var(--text); }
+        .author-info strong { display: block; color: var(--text); font-weight: 600; }
         .author-info span { color: var(--text-light); }
-        .stars { color: #D4A843; font-size: .85rem; letter-spacing: 2px; margin-bottom: .4rem; }
+        .stars { color: var(--gold); font-size: .8rem; letter-spacing: 2px; margin-bottom: .5rem; }
 
         /* ── Articles ── */
-        .articles { background: var(--cream); }
+        .articles { background: var(--ivory); }
         .articles-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
         }
         .article-card {
-            background: var(--white); border-radius: 16px; overflow: hidden;
-            transition: transform .3s, box-shadow .3s;
-            border: 1px solid rgba(122,158,126,.08);
+            background: var(--cream); border-radius: var(--radius-lg); overflow: hidden;
+            transition: transform .4s cubic-bezier(.25,.8,.25,1), box-shadow .4s;
+            border: 1px solid rgba(58,90,64,.05);
         }
         .article-card:hover {
-            transform: translateY(-4px); box-shadow: var(--shadow);
+            transform: translateY(-6px); box-shadow: var(--shadow-md);
         }
         .article-thumb {
-            height: 180px;
-            background: linear-gradient(135deg, var(--warm) 0%, #ddd5c8 100%);
+            height: 200px;
+            background: linear-gradient(145deg, var(--ivory-warm) 0%, #d8cfc0 100%);
             display: flex; align-items: center; justify-content: center;
             color: var(--text-light); font-size: .85rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            position: relative;
+            overflow: hidden;
         }
-        .article-body { padding: 1.5rem; }
+        /* Subtle decorative overlay on article thumbs */
+        .article-thumb::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(44,36,24,.04));
+        }
+        .article-body { padding: 1.8rem; }
         .article-tag {
-            display: inline-block; font-size: .75rem; font-weight: 600;
-            color: var(--sage-dark); background: rgba(122,158,126,.1);
-            padding: .25rem .7rem; border-radius: 20px; margin-bottom: .7rem;
+            display: inline-block; font-size: .7rem; font-weight: 600;
+            color: var(--forest); background: rgba(58,90,64,.08);
+            padding: .3rem .8rem; border-radius: 20px; margin-bottom: .8rem;
+            letter-spacing: .04em; text-transform: uppercase;
         }
         .article-body h3 {
-            font-size: 1.05rem; margin-bottom: .5em;
-            color: var(--text);
+            font-size: 1.2rem; margin-bottom: .5em;
+            color: var(--text); font-weight: 500;
         }
-        .article-body p { font-size: .88rem; color: var(--text-light); margin-bottom: 1rem; }
-        .article-date { font-size: .8rem; color: var(--earth); }
-        .article-link {
-            font-size: .9rem; color: var(--sage-dark); text-decoration: none;
-            font-weight: 600; transition: color .2s;
-        }
-        .article-link:hover { color: var(--sage); }
+        .article-body p { font-size: .9rem; color: var(--text-light); margin-bottom: 1.2rem; line-height: 1.7; }
+        .article-date { font-size: .8rem; color: var(--clay); }
 
         /* ── Contact ── */
-        .contact { background: var(--white); }
-        .contact-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+        .contact { background: var(--cream); }
+        .contact::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+            opacity: .3;
         }
-        .contact-info h3 { color: var(--sage-dark); margin-bottom: .3em; font-size: 1.1rem; }
-        .contact-info p { color: var(--text-light); margin-bottom: 2rem; }
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem;
+        }
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--forest); margin-bottom: .3em; font-size: 1.3rem;
+            font-weight: 500;
+        }
+        .contact-info > p { color: var(--text-light); margin-bottom: 2rem; font-size: .95rem; }
         .contact-detail {
-            display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;
+            display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.8rem;
         }
         .contact-detail .icon-circle {
-            width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
-            background: rgba(122,158,126,.1); display: flex;
-            align-items: center; justify-content: center; font-size: 1.1rem;
+            width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+            background: var(--forest);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            color: var(--gold-light);
+            box-shadow: 0 3px 10px rgba(58,90,64,.15);
         }
         .contact-detail .detail-text { font-size: .93rem; }
-        .detail-text strong { display: block; color: var(--text); margin-bottom: .15em; }
+        .detail-text strong { display: block; color: var(--text); margin-bottom: .2em; font-weight: 600; }
         .detail-text span, .detail-text a {
-            color: var(--text-light); text-decoration: none;
+            color: var(--text-mid); text-decoration: none;
         }
-        .detail-text a:hover { color: var(--sage-dark); }
+        .detail-text a:hover { color: var(--forest); }
         .contact-hours {
-            background: var(--cream); border-radius: 12px; padding: 1.5rem;
-            margin-top: .5rem;
+            background: var(--ivory); border-radius: var(--radius); padding: 1.5rem 1.8rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(58,90,64,.05);
         }
-        .contact-hours h4 { font-size: .95rem; color: var(--sage-dark); margin-bottom: .8rem; }
+        .contact-hours h4 {
+            font-size: .9rem; color: var(--forest); margin-bottom: .8rem;
+            letter-spacing: .03em;
+        }
         .hours-row {
-            display: flex; justify-content: space-between; padding: .35rem 0;
-            font-size: .88rem; color: var(--text-light);
+            display: flex; justify-content: space-between; padding: .4rem 0;
+            font-size: .88rem; color: var(--text-mid);
+        }
+        .hours-row + .hours-row {
+            border-top: 1px solid rgba(58,90,64,.04);
         }
         .contact-map {
-            border-radius: 16px; overflow: hidden;
-            background: linear-gradient(135deg, var(--warm) 0%, #ddd5c8 100%);
-            display: flex; align-items: center; justify-content: center;
-            min-height: 380px; color: var(--text-light); font-size: .9rem;
+            border-radius: var(--radius-lg); overflow: hidden;
+            min-height: 400px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(58,90,64,.06);
+        }
+        .contact-map iframe {
+            width: 100%; height: 100%; min-height: 400px; display: block;
         }
 
         /* ── Footer ── */
         footer {
-            background: var(--text); color: rgba(255,255,255,.6);
-            padding: 3rem 0 2rem; text-align: center; font-size: .88rem;
+            background: var(--text);
+            color: rgba(255,255,255,.5);
+            padding: 4rem 0 2.5rem;
+            text-align: center;
+            font-size: .88rem;
         }
-        footer .logo { color: var(--sage); margin-bottom: .5rem; display: inline-block; }
-        footer .logo span { color: rgba(255,255,255,.5); }
-        footer p { margin-top: .5rem; }
-        footer .footer-links { margin-top: 1rem; }
+        footer .logo {
+            color: var(--gold-light); margin-bottom: .5rem; display: inline-block;
+            font-size: 1.2rem;
+        }
+        footer .logo span { color: rgba(255,255,255,.35); }
+        footer .tagline {
+            margin-top: .6rem;
+            color: rgba(255,255,255,.4);
+            font-size: .88rem;
+        }
+        footer .footer-links { margin-top: 1.5rem; }
         footer .footer-links a {
-            color: rgba(255,255,255,.5); text-decoration: none; margin: 0 .8rem;
-            font-size: .85rem; transition: color .2s;
+            color: rgba(255,255,255,.4); text-decoration: none; margin: 0 1rem;
+            font-size: .85rem; transition: color .3s;
+            letter-spacing: .02em;
         }
-        footer .footer-links a:hover { color: var(--sage); }
+        footer .footer-links a:hover { color: var(--gold-light); }
+        footer .copyright {
+            margin-top: 2.5rem;
+            font-size: .78rem;
+            opacity: .5;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,.06);
+        }
+
+        /* ── Scroll animations ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity .7s cubic-bezier(.25,.8,.25,1), transform .7s cubic-bezier(.25,.8,.25,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: .1s; }
+        .reveal-delay-2 { transition-delay: .2s; }
+        .reveal-delay-3 { transition-delay: .3s; }
+
+        /* Hero entrance animations */
+        .hero-text { opacity: 0; transform: translateY(30px); animation: heroFadeIn .9s cubic-bezier(.25,.8,.25,1) .2s forwards; }
+        .hero-photo { opacity: 0; transform: translateY(30px); animation: heroFadeIn .9s cubic-bezier(.25,.8,.25,1) .4s forwards; }
+        @keyframes heroFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* ── Responsive ── */
         @media (max-width: 900px) {
-            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
             .hero-text p { margin-left: auto; margin-right: auto; }
+            .hero-tagline { justify-content: center; }
+            .btn-group { justify-content: center; }
             .hero-photo { order: -1; }
-            .photo-frame { width: 260px; height: 320px; }
+            .photo-frame { width: 280px; height: 350px; }
+            .hero-line { display: none; }
             .about-grid { grid-template-columns: 1fr; }
-            .services-grid, .testimonials-grid, .articles-grid { grid-template-columns: 1fr; }
+            .about-image-wrap { max-width: 400px; margin: 0 auto; }
+            .services-grid, .testimonials-grid, .articles-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
             .contact-grid { grid-template-columns: 1fr; }
+            section { padding: 4rem 0; }
         }
 
         @media (max-width: 700px) {
             .nav-links {
-                display: none; position: fixed; top: 70px; left: 0; right: 0;
-                background: var(--cream); flex-direction: column; padding: 2rem;
-                gap: 1.2rem; border-bottom: 1px solid rgba(122,158,126,.12);
-                box-shadow: 0 4px 20px rgba(0,0,0,.08);
+                display: none; position: fixed; top: 72px; left: 0; right: 0;
+                background: var(--ivory); flex-direction: column; padding: 2rem;
+                gap: 1.5rem; border-bottom: 1px solid rgba(58,90,64,.08);
+                box-shadow: 0 8px 30px rgba(0,0,0,.06);
             }
             .nav-links.open { display: flex; }
             .hamburger { display: flex; }
+            .container { padding: 0 1.2rem; }
         }
 
         @media (min-width: 701px) and (max-width: 900px) {
             .services-grid, .testimonials-grid, .articles-grid {
                 grid-template-columns: 1fr 1fr;
+                max-width: 100%;
             }
         }
     </style>
@@ -372,7 +673,7 @@
 <!-- ════════ Navigation ════════ -->
 <nav id="navbar">
     <div class="container">
-        <a href="#" class="logo">Δρ. Ζωή Σαλωνίτη <span>| Ιατρείο</span></a>
+        <a href="#" class="logo">Ζωή Σαλωνίτη <span>| Ιατρείο</span></a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Βιογραφικό</a></li>
             <li><a href="#services">Υπηρεσίες</a></li>
@@ -388,18 +689,22 @@
 
 <!-- ════════ Hero ════════ -->
 <section class="hero" id="home">
+    <div class="hero-line"></div>
     <div class="container">
         <div class="hero-text">
+            <div class="hero-tagline">
+                <span>Γενική Ιατρική &middot; Βελονισμός &middot; Βοτανοθεραπεία</span>
+            </div>
             <h1>Ολιστική φροντίδα<br>με <em>ανθρώπινη</em> προσέγγιση</h1>
             <p>Γενική ιατρική, βελονισμός και κινέζικη βοτανοθεραπεία — μια θεραπευτική προσέγγιση που βλέπει τον άνθρωπο ως σύνολο, με σεβασμό, ζεστασιά και επιστημονική τεκμηρίωση.</p>
-            <a href="#contact" class="btn btn-primary">Κλείστε Ραντεβού</a>
-            <a href="#about" class="btn btn-outline">Γνωρίστε με</a>
+            <div class="btn-group">
+                <a href="#contact" class="btn btn-primary">Κλείστε Ραντεβού</a>
+                <a href="#about" class="btn btn-outline">Γνωρίστε με</a>
+            </div>
         </div>
         <div class="hero-photo">
             <div class="photo-frame">
-                <!-- Αντικαταστήστε με <img src="photo.jpg" alt="Δρ. Ζωή Σαλωνίτη"> -->
-                <span class="placeholder-text">Φωτογραφία<br>Ιατρού</span>
-                <div class="silhouette"></div>
+                <img src="img/office_entrance.jpg" alt="Αίθουσα αναμονής ιατρείου" style="width:100%;height:100%;object-fit:cover;">
             </div>
         </div>
     </div>
@@ -409,15 +714,19 @@
 <section class="about" id="about">
     <div class="container">
         <div class="about-grid">
-            <div class="about-image">
-                <!-- Αντικαταστήστε με εικόνα -->
-                Φωτογραφία ιατρείου
+            <div class="about-image-wrap reveal">
+                <div class="about-image">
+                    <img src="img/examine_room.jpg" alt="Εξεταστήριο ιατρείου" style="width:100%;height:100%;object-fit:cover;">
+                </div>
             </div>
-            <div class="about-text">
+            <div class="about-text reveal reveal-delay-1">
+                <div class="section-ornament" style="justify-content: flex-start;">
+                    <span>Σχετικά</span>
+                </div>
                 <h2 class="section-title">Λίγα λόγια για μένα</h2>
-                <p>Είμαι η Ζωή Σαλωνίτη, γενική ιατρός με πάνω από 15 χρόνια κλινικής εμπειρίας. Παράλληλα με τη δυτική ιατρική, εξειδικεύτηκα στον βελονισμό και την παραδοσιακή κινέζικη βοτανοθεραπεία, αναζητώντας τρόπους να προσφέρω στους ασθενείς μου μια πληρέστερη θεραπευτική εμπειρία.</p>
-                <p>Πιστεύω βαθιά ότι η αληθινή θεραπεία ξεκινά από την εμπιστοσύνη και την ανθρώπινη σχέση. Κάθε ασθενής έχει τη δική του ιστορία — και αξίζει να ακουστεί ολόκληρη.</p>
-                <p>Σπούδασα Ιατρική στο Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών και ολοκλήρωσα μετεκπαιδεύσεις σε αναγνωρισμένα κέντρα βελονισμού και κινέζικης ιατρικής στην Ευρώπη και την Κίνα.</p>
+                <p>Γεννήθηκα στην Αθήνα το 1980 και αποφοίτησα από την Ιατρική σχολή του Εθνικού Καποδιστριακού Πανεπιστημίου Αθηνών το 2006. Ειδικεύτηκα στη Γενική Ιατρική στο Γενικό Νοσοκομείο Ρεθύμνου όπου και διαμένω πλέον μόνιμα.</p>
+                <p>Κατά την διάρκεια των σπουδών μου αναρωτήθηκα και αναζήτησα τη βαθύτερη αιτία της ασθένειας, γεγονός που με οδήγησε στην ανάγκη εφαρμογής μιας πιο ολοκληρωμένης προσέγγισης της υγείας από αυτή που μου προσέφεραν οι σπουδές μου ως γιατρός. Αποφάσισα να σπουδάσω Κινέζικη Ιατρική στην Αθήνα με τη σχολή ΑΟΜ της Vita Revelli από όπου πήρα και πτυχίο μου στην Κλασσική και Παραδοσιακή Κινέζικη Ιατρική 4 χρόνια μετά.</p>
+                <p>Έκτοτε έχω παρακολουθήσει σειρά εκπαιδεύσεων διακεκριμένων σχολών και καθηγητών, στην Ελλάδα και στο εξωτερικό, όπως η Apricot Forest με τον Alex Kolaczynski, το Hunyuan Institute for Chinese Classics με τον Yaron Seidman, και Κινέζικη βοτανοθεραπεία με την Genevieve le Goff. Έχω επίσης κάνει σειρά σεμιναρίων, αναφέροντας ενδεικτικά: Scalp acupuncture με τον James Lu, Balance system acupuncture με την Sonia Tan, Thyroid treatments with TCM με την Jeda Boughton, Discerning the Pulse με τον Michael Givens κ.α.</p>
                 <ul class="credentials">
                     <li>Πτυχίο Ιατρικής — ΕΚΠΑ</li>
                     <li>Ειδικότητα Γενικής Ιατρικής</li>
@@ -433,9 +742,12 @@
 <!-- ════════ Mission ════════ -->
 <section class="mission" id="mission">
     <div class="container text-center">
-        <div class="mission-icon">&#9753;</div>
-        <h2 class="section-title">Η φιλοσοφία μου</h2>
-        <p class="mission-text">
+        <div class="mission-icon reveal">&#9753;</div>
+        <div class="section-ornament reveal">
+            <span>Φιλοσοφία</span>
+        </div>
+        <h2 class="section-title reveal">Η φιλοσοφία μου</h2>
+        <p class="mission-text reveal reveal-delay-1">
             Η υγεία δεν είναι απλώς η απουσία ασθένειας — είναι μια <em>δυναμική ισορροπία</em> σώματος, νου και ψυχής. Στο ιατρείο μου, συνδυάζω τη σύγχρονη ιατρική γνώση με την αρχαία σοφία της κινέζικης ιατρικής, δημιουργώντας ένα θεραπευτικό πλαίσιο εξατομικευμένο για κάθε ασθενή. Ο στόχος μου είναι να σας <em>ακούσω</em>, να σας <em>κατανοήσω</em> και να σας συνοδεύσω στο δρόμο προς την ευεξία — με επιστημονική αυστηρότητα και ανθρώπινη ευαισθησία.
         </p>
     </div>
@@ -444,20 +756,23 @@
 <!-- ════════ Services ════════ -->
 <section class="services" id="services">
     <div class="container text-center">
-        <h2 class="section-title">Υπηρεσίες</h2>
-        <p class="section-subtitle">Μια ολοκληρωμένη προσέγγιση στην υγεία σας, με τρεις αλληλοσυμπληρούμενους πυλώνες.</p>
+        <div class="section-ornament reveal">
+            <span>Θεραπείες</span>
+        </div>
+        <h2 class="section-title reveal">Υπηρεσίες</h2>
+        <p class="section-subtitle reveal">Μια ολοκληρωμένη προσέγγιση στην υγεία σας, με τρεις αλληλοσυμπληρούμενους πυλώνες.</p>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card reveal reveal-delay-1">
                 <div class="service-icon">&#9764;</div>
                 <h3>Γενική Ιατρική</h3>
                 <p>Πρωτοβάθμια φροντίδα υγείας, προληπτική ιατρική, διαχείριση χρόνιων νοσημάτων και check-up. Μια σχέση εμπιστοσύνης που χτίζεται με τον χρόνο.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card reveal reveal-delay-2">
                 <div class="service-icon">&#9672;</div>
                 <h3>Βελονισμός</h3>
                 <p>Θεραπεία πόνου, αντιμετώπιση άγχους, αϋπνίας, ημικρανιών και λειτουργικών διαταραχών μέσω του κλασικού βελονισμού, με βάση τις αρχές της παραδοσιακής κινέζικης ιατρικής.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card reveal reveal-delay-3">
                 <div class="service-icon">&#9752;</div>
                 <h3>Κινέζικη Βοτανοθεραπεία</h3>
                 <p>Εξατομικευμένα βοτανικά σκευάσματα για ενίσχυση του ανοσοποιητικού, πεπτικές διαταραχές, ορμονική ισορροπία και γενική τόνωση του οργανισμού.</p>
@@ -469,10 +784,13 @@
 <!-- ════════ Testimonials ════════ -->
 <section class="testimonials" id="testimonials">
     <div class="container text-center">
-        <h2 class="section-title">Τι λένε οι ασθενείς μου</h2>
-        <p class="section-subtitle">Η εμπιστοσύνη τους είναι η μεγαλύτερη επιβράβευσή μου.</p>
+        <div class="section-ornament reveal">
+            <span>Εμπιστοσύνη</span>
+        </div>
+        <h2 class="section-title reveal">Τι λένε οι ασθενείς μου</h2>
+        <p class="section-subtitle reveal">Η εμπιστοσύνη τους είναι η μεγαλύτερη επιβράβευσή μου.</p>
         <div class="testimonials-grid">
-            <div class="testimonial-card">
+            <div class="testimonial-card reveal reveal-delay-1">
                 <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <p>Η Δρ. Σαλωνίτη είναι ο πρώτος γιατρός που πραγματικά με άκουσε. Με τον βελονισμό βρήκα ανακούφιση από χρόνιους πόνους που με ταλαιπωρούσαν χρόνια. Ένας άνθρωπος με γνήσιο ενδιαφέρον.</p>
                 <div class="testimonial-author">
@@ -483,7 +801,7 @@
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card reveal reveal-delay-2">
                 <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <p>Αντιμετώπιζα έντονο άγχος και αϋπνία. Ο συνδυασμός βοτανοθεραπείας και βελονισμού μου άλλαξε την καθημερινότητα. Νιώθω ξανά ενέργεια και ηρεμία. Ευγνώμων!</p>
                 <div class="testimonial-author">
@@ -494,7 +812,7 @@
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card reveal reveal-delay-3">
                 <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <p>Ζεστός, ανθρώπινος χώρος. Η κυρία Ζωή εξηγεί τα πάντα με υπομονή και δεν σε κάνει ποτέ να νιώσεις βιαστικά. Πραγματικά ξεχωριστή γιατρός — και ως επιστήμονας και ως άνθρωπος.</p>
                 <div class="testimonial-author">
@@ -512,30 +830,33 @@
 <!-- ════════ Articles ════════ -->
 <section class="articles" id="articles">
     <div class="container text-center">
-        <h2 class="section-title">Άρθρα & Σκέψεις</h2>
-        <p class="section-subtitle">Γράφω τακτικά για θέματα υγείας, πρόληψης και ολιστικής ευεξίας.</p>
+        <div class="section-ornament reveal">
+            <span>Γνώση</span>
+        </div>
+        <h2 class="section-title reveal">Άρθρα & Σκέψεις</h2>
+        <p class="section-subtitle reveal">Γράφω τακτικά για θέματα υγείας, πρόληψης και ολιστικής ευεξίας.</p>
         <div class="articles-grid">
-            <div class="article-card">
+            <div class="article-card reveal reveal-delay-1">
                 <div class="article-thumb">Εικόνα άρθρου</div>
-                <div class="article-body">
+                <div class="article-body" style="text-align: left;">
                     <span class="article-tag">Βελονισμός</span>
                     <h3>Πώς ο βελονισμός μπορεί να βοηθήσει στη χρόνια ημικρανία</h3>
                     <p>Μια επιστημονικά τεκμηριωμένη ματιά στη δράση του βελονισμού ως συμπληρωματική θεραπεία για τον χρόνιο πονοκέφαλο...</p>
                     <span class="article-date">12 Φεβρουαρίου 2026</span>
                 </div>
             </div>
-            <div class="article-card">
+            <div class="article-card reveal reveal-delay-2">
                 <div class="article-thumb">Εικόνα άρθρου</div>
-                <div class="article-body">
+                <div class="article-body" style="text-align: left;">
                     <span class="article-tag">Βοτανοθεραπεία</span>
                     <h3>Κινέζικα βότανα και πεπτικό: τι λέει η έρευνα</h3>
                     <p>Η κινέζικη βοτανοθεραπεία προσφέρει εξατομικευμένες λύσεις για δυσπεψία, ευερέθιστο έντερο και φουσκώματα...</p>
                     <span class="article-date">28 Ιανουαρίου 2026</span>
                 </div>
             </div>
-            <div class="article-card">
+            <div class="article-card reveal reveal-delay-3">
                 <div class="article-thumb">Εικόνα άρθρου</div>
-                <div class="article-body">
+                <div class="article-body" style="text-align: left;">
                     <span class="article-tag">Πρόληψη</span>
                     <h3>Ετήσιο check-up: γιατί δεν πρέπει να το αναβάλλετε</h3>
                     <p>Η πρόληψη σώζει ζωές. Ποιες εξετάσεις χρειάζεστε ανάλογα με την ηλικία σας και πότε πρέπει να ανησυχείτε...</p>
@@ -549,12 +870,15 @@
 <!-- ════════ Contact ════════ -->
 <section class="contact" id="contact">
     <div class="container">
-        <div class="text-center" style="margin-bottom: 3rem;">
-            <h2 class="section-title">Επικοινωνία</h2>
-            <p class="section-subtitle">Θα χαρώ να σας γνωρίσω. Επικοινωνήστε μαζί μου για να κλείσετε ραντεβού ή για οποιαδήποτε απορία.</p>
+        <div class="text-center" style="margin-bottom: 3.5rem;">
+            <div class="section-ornament reveal">
+                <span>Ραντεβού</span>
+            </div>
+            <h2 class="section-title reveal">Επικοινωνία</h2>
+            <p class="section-subtitle reveal">Θα χαρώ να σας γνωρίσω. Επικοινωνήστε μαζί μου για να κλείσετε ραντεβού ή για οποιαδήποτε απορία.</p>
         </div>
         <div class="contact-grid">
-            <div class="contact-info">
+            <div class="contact-info reveal">
                 <div class="contact-detail">
                     <div class="icon-circle">&#9742;</div>
                     <div class="detail-text">
@@ -583,9 +907,8 @@
                     <div class="hours-row"><span>Κυριακή</span><span>Κλειστά</span></div>
                 </div>
             </div>
-            <div class="contact-map">
-                <!-- Αντικαταστήστε με Google Maps iframe -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3253.5689351992364!2d24.466957711952773!3d35.36634274709257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x149b75a5ea506167%3A0xcaef8c7fdfe5c86d!2sIgoumenou%20Gavriil%2042%2C%20Rethymno%20741%2032!5e0!3m2!1sen!2sgr!4v1772915899386!5m2!1sen!2sgr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="contact-map reveal reveal-delay-1">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3253.5689351992364!2d24.466957711952773!3d35.36634274709257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x149b75a5ea506167%3A0xcaef8c7fdfe5c86d!2sIgoumenou%20Gavriil%2042%2C%20Rethymno%20741%2032!5e0!3m2!1sen!2sgr!4v1772915899386!5m2!1sen!2sgr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
@@ -594,15 +917,15 @@
 <!-- ════════ Footer ════════ -->
 <footer>
     <div class="container">
-        <a href="#" class="logo">Δρ. Ζωή Σαλωνίτη <span>| Ιατρείο</span></a>
-        <p>Γενική Ιατρική &middot; Βελονισμός &middot; Κινέζικη Βοτανοθεραπεία</p>
+        <a href="#" class="logo">Ζωή Σαλωνίτη <span>| Ιατρείο</span></a>
+        <p class="tagline">Γενική Ιατρική &middot; Βελονισμός &middot; Κινέζικη Βοτανοθεραπεία</p>
         <div class="footer-links">
             <a href="#about">Βιογραφικό</a>
             <a href="#services">Υπηρεσίες</a>
             <a href="#articles">Άρθρα</a>
             <a href="#contact">Επικοινωνία</a>
         </div>
-        <p style="margin-top: 2rem; font-size: .8rem; opacity: .5;">&copy; 2026 Δρ. Ζωή Σαλωνίτη. Με επιφύλαξη παντός δικαιώματος.</p>
+        <p class="copyright">&copy; 2026 Ζωή Σαλωνίτη. Με επιφύλαξη παντός δικαιώματος.</p>
     </div>
 </footer>
 
@@ -611,7 +934,7 @@
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 20);
-    });
+    }, { passive: true });
 
     // ── Mobile menu ──
     const hamburger = document.getElementById('hamburger');
@@ -623,21 +946,18 @@
         link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
-    // ── Smooth reveal on scroll ──
-    const observer = new IntersectionObserver((entries) => {
+    // ── Scroll reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => {
             if (e.isIntersecting) {
-                e.target.style.opacity = '1';
-                e.target.style.transform = 'translateY(0)';
+                e.target.classList.add('visible');
+                revealObserver.unobserve(e.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.service-card, .testimonial-card, .article-card, .about-grid, .mission-text').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(24px)';
-        el.style.transition = 'opacity .6s ease, transform .6s ease';
-        observer.observe(el);
+    document.querySelectorAll('.reveal').forEach(el => {
+        revealObserver.observe(el);
     });
 </script>
 
