@@ -423,32 +423,15 @@
         }
         .service-card p { font-size: .92rem; color: var(--text-light); line-height: 1.8; }
 
-        /* Preview of the related article inside a service card */
-        .service-article {
-            display: block; text-decoration: none; color: inherit;
+        .service-card p + p { margin-top: 1rem; }
+        .service-more {
+            align-self: flex-start;
             margin-top: auto; padding-top: 1.6rem;
-            border-top: 1px solid rgba(196,162,101,.35);
-        }
-        .service-article-label {
-            display: block; font-size: .68rem; font-weight: 600;
-            letter-spacing: .16em; text-transform: uppercase;
-            color: var(--gold); margin-bottom: .6rem;
-        }
-        .service-article h4 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.12rem; font-weight: 600; line-height: 1.35;
-            color: var(--text); margin-bottom: .5rem;
+            font-size: .8rem; font-weight: 600; color: var(--clay);
+            text-decoration: none; letter-spacing: .02em;
             transition: color .3s;
         }
-        .service-article p {
-            font-size: .86rem; line-height: 1.7; margin-bottom: .9rem;
-        }
-        .service-more {
-            font-size: .8rem; font-weight: 600; color: var(--clay);
-            letter-spacing: .02em; transition: color .3s;
-        }
-        .service-article:hover h4 { color: var(--forest); }
-        .service-article:hover .service-more { color: var(--clay-dark); }
+        .service-more:hover { color: var(--clay-dark); }
 
         /* ── Testimonials ── */
         .testimonials { background: var(--cream); }
@@ -842,34 +825,24 @@
                 <div class="service-icon">&#9672;</div>
                 <h3 data-lang="el">Βελονισμός</h3>
                 <h3 data-lang="en">Acupuncture</h3>
-                <p data-lang="el">Χρησιμοποιώντας εξαιρετικά λεπτές, αποστειρωμένες βελόνες που τοποθετούνται σε συγκεκριμένα σημεία κατά μήκος των ενεργειακών οδών του σώματος (μεσημβρινοί), ο βελονισμός είναι επιστημονικά πια αποδεδειγμένο ότι έχει όφελος σε πληθώρα ασθενειών.</p>
-                <p data-lang="en">Using extremely fine, sterile needles placed at specific points along the body's energy pathways (meridians), acupuncture is now scientifically proven to be of benefit in a wide range of conditions.</p>
-                <a class="service-article" href="arthra/velonismos-vs-antiflegmonodi.html">
-                    <span class="service-article-label" data-lang="el">Σχετικό άρθρο</span>
-                    <span class="service-article-label" data-lang="en">Related article</span>
-                    <h4 data-lang="el">Βελονισμός vs Αντιφλεγμονώδη: μια νέα ματιά στη διαχείριση του πόνου</h4>
-                    <h4 data-lang="en">Acupuncture vs anti-inflammatories: a new look at pain management</h4>
-                    <p data-lang="el">Πρόσφατες κλινικές μελέτες και μετα-αναλύσεις δείχνουν ότι ο βελονισμός είναι εξίσου αποτελεσματικός — και σε πολλές περιπτώσεις ανώτερος — από τα αντιφλεγμονώδη στη διαχείριση του πόνου.</p>
-                    <p data-lang="en">Recent clinical studies and meta-analyses show that acupuncture is as effective as — and in many cases superior to — anti-inflammatory drugs in managing pain.</p>
-                    <span class="service-more" data-lang="el">Διαβάστε περισσότερα &rarr;</span>
-                    <span class="service-more" data-lang="en">Read more &rarr;</span>
+                <p data-lang="el">Ο βελονισμός δεν αποτελεί πλέον μια «εναλλακτική» λύση, αλλά μια επιστημονικά τεκμηριωμένη θεραπευτική επιλογή. Για έναν ασθενή που θέλει να αποφύγει τη χρόνια λήψη χημικών σκευασμάτων, ο βελονισμός προσφέρει μια βιώσιμη και αποτελεσματική διέξοδο, αντιμετωπίζοντας τον πόνο στην πηγή του.</p>
+                <p data-lang="en">Acupuncture is no longer an «alternative» option, but a scientifically documented therapeutic choice. For a patient who wants to avoid taking chemical preparations long term, acupuncture offers a sustainable and effective way out, addressing pain at its source.</p>
+                <a class="service-more" href="arthra/velonismos-vs-antiflegmonodi.html">
+                    <span data-lang="el">Διαβάστε περισσότερα &rarr;</span>
+                    <span data-lang="en">Read more &rarr;</span>
                 </a>
             </div>
             <div class="service-card reveal reveal-delay-3">
                 <div class="service-icon">&#9752;</div>
                 <h3 data-lang="el">Κινέζικη Βοτανοθεραπεία</h3>
                 <h3 data-lang="en">Chinese Herbal Medicine</h3>
-                <p data-lang="el">Περιλαμβάνει εξατομικευμένες φόρμουλες που συνδυάζουν διάφορα βότανα. Δημιουργείται ένα μοναδικό μείγμα βοτάνων, ειδικά για το διαγνωσμένο πρότυπο ανισορροπίας σας.</p>
-                <p data-lang="en">This involves individualised formulas that combine several herbs. A unique herbal blend is created specifically for your diagnosed pattern of imbalance.</p>
-                <a class="service-article" href="arthra/kineziki-iatriki.html">
-                    <span class="service-article-label" data-lang="el">Σχετικό άρθρο</span>
-                    <span class="service-article-label" data-lang="en">Related article</span>
-                    <h4 data-lang="el">Η διαχρονική σοφία της Κινέζικης Ιατρικής στην υπηρεσία της υγείας</h4>
-                    <h4 data-lang="en">The timeless wisdom of Chinese Medicine in the service of health</h4>
-                    <p data-lang="el">Ένα ολοκληρωμένο θεραπευτικό σύστημα με πάνω από 3.000 χρόνια ιστορίας, που αναζητά τη ρίζα της ανισορροπίας — βελονισμός, βοτανοθεραπεία, βεντούζες και μόξα.</p>
-                    <p data-lang="en">A complete therapeutic system with more than 3,000 years of history that looks for the root of the imbalance — acupuncture, herbal medicine, cupping and moxa.</p>
-                    <span class="service-more" data-lang="el">Διαβάστε περισσότερα &rarr;</span>
-                    <span class="service-more" data-lang="en">Read more &rarr;</span>
+                <p data-lang="el">Εξατομικευμένες φόρμουλες που συνδυάζουν διάφορα βότανα, φτιαγμένες ειδικά για το πρότυπο ανισορροπίας που έχει διαγνωστεί σε εσάς — μέρος ενός θεραπευτικού συστήματος με πάνω από 3.000 χρόνια ιστορίας.</p>
+                <p data-lang="en">Individualised formulas that combine several herbs, made specifically for the pattern of imbalance diagnosed in you — part of a therapeutic system with more than 3,000 years of history.</p>
+                <p data-lang="el">Η Κινέζικη Ιατρική δεν αναζητά μόνο το σύμπτωμα, αλλά τη ρίζα της ανισορροπίας: τη ροή του qi και την ισορροπία του Γιν και του Γιανγκ, με βελονισμό, βότανα, βεντούζες και μόξα.</p>
+                <p data-lang="en">Chinese Medicine looks not only at the symptom but at the root of the imbalance: the flow of qi and the balance of Yin and Yang, through acupuncture, herbs, cupping and moxa.</p>
+                <a class="service-more" href="arthra/kineziki-iatriki.html">
+                    <span data-lang="el">Διαβάστε περισσότερα &rarr;</span>
+                    <span data-lang="en">Read more &rarr;</span>
                 </a>
             </div>
         </div>
