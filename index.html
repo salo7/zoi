@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="el" data-lang="el"
+      data-title-el="Ζωή Σαλωνίτη — Γενική Ιατρική · Βελονισμός · Κινέζικη Βοτανοθεραπεία"
+      data-title-en="Zoi Saloniti — General Medicine · Acupuncture · Chinese Herbal Medicine"
+      data-description-el="Ιατρείο στο Ρέθυμνο: γενική ιατρική, βελονισμός και κινέζικη βοτανοθεραπεία. Μια ολιστική προσέγγιση της υγείας με ανθρώπινη φροντίδα και επιστημονική τεκμηρίωση."
+      data-description-en="Practice in Rethymno, Crete: general medicine, acupuncture and Chinese herbal medicine. A holistic approach to health, with genuine care and scientific grounding.">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ζωή Σαλωνίτη — Γενική Ιατρική · Βελονισμός · Κινέζικη Βοτανοθεραπεία</title>
+    <meta name="description" content="Ιατρείο στο Ρέθυμνο: γενική ιατρική, βελονισμός και κινέζικη βοτανοθεραπεία. Μια ολιστική προσέγγιση της υγείας με ανθρώπινη φροντίδα και επιστημονική τεκμηρίωση.">
+    <script src="lang.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -36,6 +42,10 @@
         }
 
         html { scroll-behavior: smooth; }
+
+        /* ── Bilingual content: only the active language is displayed ── */
+        html[data-lang="el"] [data-lang="en"],
+        html[data-lang="en"] [data-lang="el"] { display: none !important; }
 
         body {
             font-family: 'DM Sans', system-ui, sans-serif;
@@ -134,7 +144,7 @@
             font-size: 1.3rem; font-weight: 600; color: var(--forest);
             text-decoration: none; letter-spacing: -.01em;
         }
-        .logo span {
+        .logo .logo-sub {
             color: var(--clay);
             font-weight: 400;
             font-style: italic;
@@ -153,6 +163,23 @@
             border-radius: 1px; transition: width .3s;
         }
         .nav-links a:hover::after { width: 100%; }
+
+        /* ── Language switch ── */
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
+        .lang-switch { display: flex; align-items: center; gap: .15rem; }
+        .lang-btn {
+            background: none; border: none; cursor: pointer;
+            font-family: inherit; font-size: .78rem; font-weight: 600;
+            letter-spacing: .12em; text-transform: uppercase;
+            color: var(--text-light);
+            padding: .3rem .45rem; border-radius: 6px;
+            transition: color .3s, background .3s;
+        }
+        .lang-btn:hover { color: var(--forest); }
+        .lang-btn[aria-pressed="true"] {
+            color: var(--forest); background: rgba(58,90,64,.08);
+        }
+        .lang-sep { color: rgba(58,90,64,.25); font-size: .7rem; }
 
         .hamburger {
             display: none; background: none; border: none; cursor: pointer;
@@ -206,6 +233,14 @@
             font-style: italic; color: var(--forest);
             font-weight: 500;
         }
+        /* Cormorant's Latin glyphs have a smaller x-height than its Greek ones,
+           so English headings need a nudge to look the same size. */
+        html[data-lang="en"] .hero-text h1 {
+            font-size: clamp(2.6rem, 5.45vw, 4.15rem);
+        }
+        html[data-lang="en"] h2.section-title {
+            font-size: clamp(2.15rem, 4.35vw, 3.25rem);
+        }
         .hero-tagline {
             display: flex; align-items: center; gap: .8rem;
             margin-bottom: 1.5rem;
@@ -225,7 +260,7 @@
         }
         .hero-text p {
             font-size: 1.05rem; color: var(--text-light);
-            margin-bottom: 2.5rem; max-width: 500px;
+            max-width: 500px;
             line-height: 1.85;
         }
         .hero-photo {
@@ -264,32 +299,6 @@
             width: 70%; height: 75%;
             background: linear-gradient(to top, rgba(255,255,255,.08), rgba(255,255,255,.02));
             border-radius: 160px 160px 0 0;
-        }
-
-        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn {
-            display: inline-flex; align-items: center; gap: .5rem;
-            padding: .9rem 2.2rem; border-radius: 50px;
-            text-decoration: none; font-weight: 600; font-size: .9rem;
-            transition: all .4s cubic-bezier(.25,.8,.25,1);
-            cursor: pointer; border: none;
-            letter-spacing: .02em;
-        }
-        .btn-primary {
-            background: var(--forest); color: var(--white);
-            box-shadow: 0 4px 20px rgba(58,90,64,.25);
-        }
-        .btn-primary:hover {
-            background: var(--forest-deep);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(58,90,64,.3);
-        }
-        .btn-outline {
-            background: transparent; color: var(--forest);
-            border: 1.5px solid var(--forest);
-        }
-        .btn-outline:hover {
-            background: var(--forest); color: var(--white);
         }
 
         /* ── About ── */
@@ -332,20 +341,7 @@
             margin-bottom: 1.2em; color: var(--text-mid);
             font-size: .97rem;
         }
-        .about-text p:last-of-type { margin-bottom: 2em; }
-        .credentials { list-style: none; }
-        .credentials li {
-            padding: .55rem 0; padding-left: 1.8em; position: relative;
-            color: var(--text-mid); font-size: .93rem;
-        }
-        .credentials li::before {
-            content: '';
-            position: absolute; left: 0; top: 1em;
-            width: 8px; height: 8px;
-            border: 1.5px solid var(--gold);
-            border-radius: 50%;
-            background: transparent;
-        }
+        .about-text p:last-of-type { margin-bottom: 0; }
 
         /* ── Mission ── */
         .mission {
@@ -394,6 +390,7 @@
             background: var(--cream);
             border-radius: var(--radius-lg); padding: 2.8rem 2.2rem;
             text-align: left;
+            display: flex; flex-direction: column;
             transition: transform .4s cubic-bezier(.25,.8,.25,1), box-shadow .4s;
             border: 1px solid rgba(58,90,64,.05);
             position: relative;
@@ -426,6 +423,33 @@
         }
         .service-card p { font-size: .92rem; color: var(--text-light); line-height: 1.8; }
 
+        /* Preview of the related article inside a service card */
+        .service-article {
+            display: block; text-decoration: none; color: inherit;
+            margin-top: auto; padding-top: 1.6rem;
+            border-top: 1px solid rgba(196,162,101,.35);
+        }
+        .service-article-label {
+            display: block; font-size: .68rem; font-weight: 600;
+            letter-spacing: .16em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: .6rem;
+        }
+        .service-article h4 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.12rem; font-weight: 600; line-height: 1.35;
+            color: var(--text); margin-bottom: .5rem;
+            transition: color .3s;
+        }
+        .service-article p {
+            font-size: .86rem; line-height: 1.7; margin-bottom: .9rem;
+        }
+        .service-more {
+            font-size: .8rem; font-weight: 600; color: var(--clay);
+            letter-spacing: .02em; transition: color .3s;
+        }
+        .service-article:hover h4 { color: var(--forest); }
+        .service-article:hover .service-more { color: var(--clay-dark); }
+
         /* ── Testimonials ── */
         .testimonials { background: var(--cream); }
         .testimonials::before {
@@ -443,12 +467,14 @@
             border-radius: var(--radius-lg); padding: 2.2rem;
             position: relative;
             border: 1px solid rgba(58,90,64,.04);
+            text-align: left;
+            display: flex; flex-direction: column;
         }
         .testimonial-card::before {
             content: '\201C';
-            position: absolute; top: 1rem; left: 1.5rem;
+            position: absolute; top: 1.2rem; right: 1.8rem;
             font-size: 4rem; color: var(--gold);
-            opacity: .25;
+            opacity: .2;
             font-family: 'Cormorant Garamond', Georgia, serif;
             line-height: 1;
         }
@@ -458,10 +484,11 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.05rem;
             line-height: 1.8;
-            margin-bottom: 1.5rem; padding-top: 1.2rem;
+            margin-bottom: 1.5rem; padding-top: .6rem;
         }
         .testimonial-author {
             display: flex; align-items: center; gap: .8rem;
+            margin-top: auto;
         }
         .author-avatar {
             width: 40px; height: 40px; border-radius: 50%;
@@ -480,6 +507,7 @@
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
         }
         .article-card {
+            display: block; text-decoration: none; color: inherit;
             background: var(--cream); border-radius: var(--radius-lg); overflow: hidden;
             transition: transform .4s cubic-bezier(.25,.8,.25,1), box-shadow .4s;
             border: 1px solid rgba(58,90,64,.05);
@@ -496,6 +524,25 @@
             font-style: italic;
             position: relative;
             overflow: hidden;
+        }
+        .article-thumb img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .article-thumb-deco {
+            background: linear-gradient(150deg, var(--forest) 0%, var(--forest-deep) 100%);
+        }
+        .article-thumb-deco span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.4rem; font-style: normal;
+            color: var(--gold-light);
+            letter-spacing: .04em;
+            position: relative; z-index: 1;
+        }
+        .article-thumb-deco::before {
+            content: '';
+            position: absolute;
+            width: 150px; height: 150px; border-radius: 50%;
+            border: 1px solid rgba(196,162,101,.3);
         }
         /* Subtle decorative overlay on article thumbs */
         .article-thumb::after {
@@ -515,7 +562,11 @@
             color: var(--text); font-weight: 500;
         }
         .article-body p { font-size: .9rem; color: var(--text-light); margin-bottom: 1.2rem; line-height: 1.7; }
-        .article-date { font-size: .8rem; color: var(--clay); }
+        .article-more {
+            font-size: .82rem; color: var(--clay); font-weight: 600;
+            letter-spacing: .02em;
+        }
+        .article-card:hover .article-more { color: var(--clay-dark); }
 
         /* ── Contact ── */
         .contact { background: var(--cream); }
@@ -590,7 +641,7 @@
             color: var(--gold-light); margin-bottom: .5rem; display: inline-block;
             font-size: 1.2rem;
         }
-        footer .logo span { color: rgba(255,255,255,.35); }
+        footer .logo .logo-sub { color: rgba(255,255,255,.35); }
         footer .tagline {
             margin-top: .6rem;
             color: rgba(255,255,255,.4);
@@ -637,7 +688,6 @@
             .hero .container { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
             .hero-text p { margin-left: auto; margin-right: auto; }
             .hero-tagline { justify-content: center; }
-            .btn-group { justify-content: center; }
             .hero-photo { order: -1; }
             .photo-frame { width: 280px; height: 350px; }
             .hero-line { display: none; }
@@ -673,17 +723,27 @@
 <!-- ════════ Navigation ════════ -->
 <nav id="navbar">
     <div class="container">
-        <a href="#" class="logo">Ζωή Σαλωνίτη <span>| Ιατρείο</span></a>
+        <a href="#" class="logo">
+            <span data-lang="el">Ζωή Σαλωνίτη <span class="logo-sub">| Ιατρείο</span></span>
+            <span data-lang="en">Zoi Saloniti <span class="logo-sub">| Practice</span></span>
+        </a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#about">Βιογραφικό</a></li>
-            <li><a href="#services">Υπηρεσίες</a></li>
-            <li><a href="#testimonials">Μαρτυρίες</a></li>
-            <li><a href="#articles">Άρθρα</a></li>
-            <li><a href="#contact">Επικοινωνία</a></li>
+            <li><a href="#about"><span data-lang="el">Βιογραφικό</span><span data-lang="en">About</span></a></li>
+            <li><a href="#services"><span data-lang="el">Υπηρεσίες</span><span data-lang="en">Services</span></a></li>
+            <li><a href="#testimonials"><span data-lang="el">Μαρτυρίες</span><span data-lang="en">Testimonials</span></a></li>
+            <li><a href="#articles"><span data-lang="el">Άρθρα</span><span data-lang="en">Articles</span></a></li>
+            <li><a href="#contact"><span data-lang="el">Επικοινωνία</span><span data-lang="en">Contact</span></a></li>
         </ul>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="nav-right">
+            <div class="lang-switch" role="group" aria-label="Γλώσσα / Language">
+                <button type="button" class="lang-btn" data-set-lang="el" aria-pressed="true" lang="el">ΕΛ</button>
+                <span class="lang-sep" aria-hidden="true">/</span>
+                <button type="button" class="lang-btn" data-set-lang="en" aria-pressed="false" lang="en">EN</button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </div>
 </nav>
 
@@ -693,14 +753,13 @@
     <div class="container">
         <div class="hero-text">
             <div class="hero-tagline">
-                <span>Γενική Ιατρική &middot; Βελονισμός &middot; Βοτανοθεραπεία</span>
+                <span data-lang="el">Γενική Ιατρική &middot; Βελονισμός &middot; Βοτανοθεραπεία</span>
+                <span data-lang="en">General Medicine &middot; Acupuncture &middot; Herbal Medicine</span>
             </div>
-            <h1>Ολιστική φροντίδα<br>με <em>ανθρώπινη</em> προσέγγιση</h1>
-            <p>Γενική ιατρική, βελονισμός και κινέζικη βοτανοθεραπεία — μια θεραπευτική προσέγγιση που βλέπει τον άνθρωπο ως σύνολο, με σεβασμό, ζεστασιά και επιστημονική τεκμηρίωση.</p>
-            <div class="btn-group">
-                <a href="#contact" class="btn btn-primary">Κλείστε Ραντεβού</a>
-                <a href="#about" class="btn btn-outline">Γνωρίστε με</a>
-            </div>
+            <h1 data-lang="el">Ολιστική φροντίδα<br>με <em>ανθρώπινη</em> προσέγγιση</h1>
+            <h1 data-lang="en">Holistic care<br>with a <em>human</em> approach</h1>
+            <p data-lang="el">Γενική ιατρική, βελονισμός και κινέζικη βοτανοθεραπεία — μια θεραπευτική προσέγγιση που βλέπει τον άνθρωπο ως σύνολο, με σεβασμό, ζεστασιά και επιστημονική τεκμηρίωση.</p>
+            <p data-lang="en">General medicine, acupuncture and Chinese herbal medicine — a therapeutic approach that sees the person as a whole, with respect, warmth and scientific grounding.</p>
         </div>
         <div class="hero-photo">
             <div class="photo-frame">
@@ -716,24 +775,26 @@
         <div class="about-grid">
             <div class="about-image-wrap reveal">
                 <div class="about-image">
-                    <img src="img/examine_room.jpg" alt="Εξεταστήριο ιατρείου" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="img/office_wallpaper.jpg" alt="Τοιχογραφία στον χώρο του ιατρείου" style="width:100%;height:100%;object-fit:cover;">
                 </div>
             </div>
             <div class="about-text reveal reveal-delay-1">
                 <div class="section-ornament" style="justify-content: flex-start;">
-                    <span>Σχετικά</span>
+                    <span data-lang="el">Σχετικά</span>
+                    <span data-lang="en">About</span>
                 </div>
-                <h2 class="section-title">Λίγα λόγια για μένα</h2>
-                <p>Γεννήθηκα στην Αθήνα το 1980 και αποφοίτησα από την Ιατρική σχολή του Εθνικού Καποδιστριακού Πανεπιστημίου Αθηνών το 2006. Ειδικεύτηκα στη Γενική Ιατρική στο Γενικό Νοσοκομείο Ρεθύμνου όπου και διαμένω πλέον μόνιμα.</p>
-                <p>Κατά την διάρκεια των σπουδών μου αναρωτήθηκα και αναζήτησα τη βαθύτερη αιτία της ασθένειας, γεγονός που με οδήγησε στην ανάγκη εφαρμογής μιας πιο ολοκληρωμένης προσέγγισης της υγείας από αυτή που μου προσέφεραν οι σπουδές μου ως γιατρός. Αποφάσισα να σπουδάσω Κινέζικη Ιατρική στην Αθήνα με τη σχολή ΑΟΜ της Vita Revelli από όπου πήρα και πτυχίο μου στην Κλασσική και Παραδοσιακή Κινέζικη Ιατρική 4 χρόνια μετά.</p>
-                <p>Έκτοτε έχω παρακολουθήσει σειρά εκπαιδεύσεων διακεκριμένων σχολών και καθηγητών, στην Ελλάδα και στο εξωτερικό, όπως η Apricot Forest με τον Alex Kolaczynski, το Hunyuan Institute for Chinese Classics με τον Yaron Seidman, και Κινέζικη βοτανοθεραπεία με την Genevieve le Goff. Έχω επίσης κάνει σειρά σεμιναρίων, αναφέροντας ενδεικτικά: Scalp acupuncture με τον James Lu, Balance system acupuncture με την Sonia Tan, Thyroid treatments with TCM με την Jeda Boughton, Discerning the Pulse με τον Michael Givens κ.α.</p>
-                <ul class="credentials">
-                    <li>Πτυχίο Ιατρικής — ΕΚΠΑ</li>
-                    <li>Ειδικότητα Γενικής Ιατρικής</li>
-                    <li>Δίπλωμα Βελονισμού — Διεθνής Πιστοποίηση</li>
-                    <li>Εξειδίκευση Κινέζικης Βοτανοθεραπείας</li>
-                    <li>Μέλος Ελληνικής Εταιρείας Βελονισμού</li>
-                </ul>
+                <h2 class="section-title" data-lang="el">Λίγα λόγια για μένα</h2>
+                <h2 class="section-title" data-lang="en">A few words about me</h2>
+                <div data-lang="el">
+                    <p>Γεννήθηκα στην Αθήνα το 1980 και αποφοίτησα από την Ιατρική σχολή του Εθνικού Καποδιστριακού Πανεπιστημίου Αθηνών το 2006. Ειδικεύτηκα στη Γενική Ιατρική στο Γενικό Νοσοκομείο Ρεθύμνου όπου και διαμένω πλέον μόνιμα.</p>
+                    <p>Κατά την διάρκεια των σπουδών μου αναρωτήθηκα και αναζήτησα τη βαθύτερη αιτία της ασθένειας, γεγονός που με οδήγησε στην ανάγκη εφαρμογής μιας πιο ολοκληρωμένης προσέγγισης της υγείας από αυτή που μου προσέφεραν οι σπουδές μου ως γιατρός. Αποφάσισα να σπουδάσω Κινέζικη Ιατρική στην Αθήνα με τη σχολή ΑΟΜ της Vita Revelli από όπου πήρα και πτυχίο μου στην Κλασσική και Παραδοσιακή Κινέζικη Ιατρική 4 χρόνια μετά.</p>
+                    <p>Έκτοτε έχω παρακολουθήσει σειρά εκπαιδεύσεων διακεκριμένων σχολών και καθηγητών, στην Ελλάδα και στο εξωτερικό, όπως η Apricot Forest με τον Alex Kolaczynski, το Hunyuan Institute for Chinese Classics με τον Yaron Seidman, και Κινέζικη βοτανοθεραπεία με την Genevieve le Goff. Έχω επίσης κάνει σειρά σεμιναρίων, αναφέροντας ενδεικτικά: Scalp acupuncture με τον James Lu, Balance system acupuncture με την Sonia Tan, Thyroid treatments with TCM με την Jeda Boughton, Discerning the Pulse με τον Michael Givens κ.α.</p>
+                </div>
+                <div data-lang="en">
+                    <p>I was born in Athens in 1980 and graduated from the Medical School of the National and Kapodistrian University of Athens in 2006. I trained as a specialist in General Medicine at the General Hospital of Rethymno, where I now live permanently.</p>
+                    <p>During my studies I kept asking about — and looking for — the deeper cause of illness. That search led me to the need for a more complete approach to health than the one my medical studies had offered me. I decided to study Chinese Medicine in Athens at Vita Revelli's AOM school, where four years later I received my diploma in Classical and Traditional Chinese Medicine.</p>
+                    <p>Since then I have attended a series of trainings with distinguished schools and teachers, in Greece and abroad: Apricot Forest with Alex Kolaczynski, the Hunyuan Institute for Chinese Classics with Yaron Seidman, and Chinese herbal medicine with Genevieve le Goff. I have also completed numerous seminars, including Scalp Acupuncture with James Lu, Balance System Acupuncture with Sonia Tan, Thyroid Treatments with TCM with Jeda Boughton and Discerning the Pulse with Michael Givens, among others.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -744,11 +805,16 @@
     <div class="container text-center">
         <div class="mission-icon reveal">&#9753;</div>
         <div class="section-ornament reveal">
-            <span>Φιλοσοφία</span>
+            <span data-lang="el">Φιλοσοφία</span>
+            <span data-lang="en">Philosophy</span>
         </div>
-        <h2 class="section-title reveal">Η φιλοσοφία μου</h2>
-        <p class="mission-text reveal reveal-delay-1">
+        <h2 class="section-title reveal" data-lang="el">Η φιλοσοφία μου</h2>
+        <h2 class="section-title reveal" data-lang="en">My philosophy</h2>
+        <p class="mission-text reveal reveal-delay-1" data-lang="el">
             Η υγεία δεν είναι απλώς η απουσία ασθένειας — είναι μια <em>δυναμική ισορροπία</em> σώματος, νου και ψυχής. Στο ιατρείο μου, συνδυάζω τη σύγχρονη ιατρική γνώση με την αρχαία σοφία της κινέζικης ιατρικής, δημιουργώντας ένα θεραπευτικό πλαίσιο εξατομικευμένο για κάθε ασθενή. Ο στόχος μου είναι να σας <em>ακούσω</em>, να σας <em>κατανοήσω</em> και να σας συνοδεύσω στο δρόμο προς την ευεξία — με επιστημονική αυστηρότητα και ανθρώπινη ευαισθησία.
+        </p>
+        <p class="mission-text reveal reveal-delay-1" data-lang="en">
+            Health is not simply the absence of illness — it is a <em>dynamic balance</em> of body, mind and spirit. In my practice I combine modern medical knowledge with the ancient wisdom of Chinese medicine, creating a therapeutic framework tailored to each patient. My aim is to <em>listen</em> to you, to <em>understand</em> you and to walk with you on the way towards well-being — with scientific rigour and human sensitivity.
         </p>
     </div>
 </section>
@@ -757,25 +823,54 @@
 <section class="services" id="services">
     <div class="container text-center">
         <div class="section-ornament reveal">
-            <span>Θεραπείες</span>
+            <span data-lang="el">Θεραπείες</span>
+            <span data-lang="en">Treatments</span>
         </div>
-        <h2 class="section-title reveal">Υπηρεσίες</h2>
-        <p class="section-subtitle reveal">Μια ολοκληρωμένη προσέγγιση στην υγεία σας, με τρεις αλληλοσυμπληρούμενους πυλώνες.</p>
+        <h2 class="section-title reveal" data-lang="el">Υπηρεσίες</h2>
+        <h2 class="section-title reveal" data-lang="en">Services</h2>
+        <p class="section-subtitle reveal" data-lang="el">Μια ολοκληρωμένη προσέγγιση στην υγεία σας, με τρεις αλληλοσυμπληρούμενους πυλώνες.</p>
+        <p class="section-subtitle reveal" data-lang="en">A complete approach to your health, built on three complementary pillars.</p>
         <div class="services-grid">
             <div class="service-card reveal reveal-delay-1">
                 <div class="service-icon">&#9764;</div>
-                <h3>Γενική Ιατρική</h3>
-                <p>Πρωτοβάθμια φροντίδα υγείας, προληπτική ιατρική, διαχείριση χρόνιων νοσημάτων και check-up. Μια σχέση εμπιστοσύνης που χτίζεται με τον χρόνο.</p>
+                <h3 data-lang="el">Γενική Ιατρική</h3>
+                <h3 data-lang="en">General Medicine</h3>
+                <p data-lang="el">Πρωτοβάθμια φροντίδα υγείας, προληπτική ιατρική, διαχείριση χρόνιων νοσημάτων και check-up.</p>
+                <p data-lang="en">Primary health care, preventive medicine, management of chronic conditions and check-ups.</p>
             </div>
             <div class="service-card reveal reveal-delay-2">
                 <div class="service-icon">&#9672;</div>
-                <h3>Βελονισμός</h3>
-                <p>Θεραπεία πόνου, αντιμετώπιση άγχους, αϋπνίας, ημικρανιών και λειτουργικών διαταραχών μέσω του κλασικού βελονισμού, με βάση τις αρχές της παραδοσιακής κινέζικης ιατρικής.</p>
+                <h3 data-lang="el">Βελονισμός</h3>
+                <h3 data-lang="en">Acupuncture</h3>
+                <p data-lang="el">Χρησιμοποιώντας εξαιρετικά λεπτές, αποστειρωμένες βελόνες που τοποθετούνται σε συγκεκριμένα σημεία κατά μήκος των ενεργειακών οδών του σώματος (μεσημβρινοί), ο βελονισμός είναι επιστημονικά πια αποδεδειγμένο ότι έχει όφελος σε πληθώρα ασθενειών.</p>
+                <p data-lang="en">Using extremely fine, sterile needles placed at specific points along the body's energy pathways (meridians), acupuncture is now scientifically proven to be of benefit in a wide range of conditions.</p>
+                <a class="service-article" href="arthra/velonismos-vs-antiflegmonodi.html">
+                    <span class="service-article-label" data-lang="el">Σχετικό άρθρο</span>
+                    <span class="service-article-label" data-lang="en">Related article</span>
+                    <h4 data-lang="el">Βελονισμός vs Αντιφλεγμονώδη: μια νέα ματιά στη διαχείριση του πόνου</h4>
+                    <h4 data-lang="en">Acupuncture vs anti-inflammatories: a new look at pain management</h4>
+                    <p data-lang="el">Πρόσφατες κλινικές μελέτες και μετα-αναλύσεις δείχνουν ότι ο βελονισμός είναι εξίσου αποτελεσματικός — και σε πολλές περιπτώσεις ανώτερος — από τα αντιφλεγμονώδη στη διαχείριση του πόνου.</p>
+                    <p data-lang="en">Recent clinical studies and meta-analyses show that acupuncture is as effective as — and in many cases superior to — anti-inflammatory drugs in managing pain.</p>
+                    <span class="service-more" data-lang="el">Διαβάστε περισσότερα &rarr;</span>
+                    <span class="service-more" data-lang="en">Read more &rarr;</span>
+                </a>
             </div>
             <div class="service-card reveal reveal-delay-3">
                 <div class="service-icon">&#9752;</div>
-                <h3>Κινέζικη Βοτανοθεραπεία</h3>
-                <p>Εξατομικευμένα βοτανικά σκευάσματα για ενίσχυση του ανοσοποιητικού, πεπτικές διαταραχές, ορμονική ισορροπία και γενική τόνωση του οργανισμού.</p>
+                <h3 data-lang="el">Κινέζικη Βοτανοθεραπεία</h3>
+                <h3 data-lang="en">Chinese Herbal Medicine</h3>
+                <p data-lang="el">Περιλαμβάνει εξατομικευμένες φόρμουλες που συνδυάζουν διάφορα βότανα. Δημιουργείται ένα μοναδικό μείγμα βοτάνων, ειδικά για το διαγνωσμένο πρότυπο ανισορροπίας σας.</p>
+                <p data-lang="en">This involves individualised formulas that combine several herbs. A unique herbal blend is created specifically for your diagnosed pattern of imbalance.</p>
+                <a class="service-article" href="arthra/kineziki-iatriki.html">
+                    <span class="service-article-label" data-lang="el">Σχετικό άρθρο</span>
+                    <span class="service-article-label" data-lang="en">Related article</span>
+                    <h4 data-lang="el">Η διαχρονική σοφία της Κινέζικης Ιατρικής στην υπηρεσία της υγείας</h4>
+                    <h4 data-lang="en">The timeless wisdom of Chinese Medicine in the service of health</h4>
+                    <p data-lang="el">Ένα ολοκληρωμένο θεραπευτικό σύστημα με πάνω από 3.000 χρόνια ιστορίας, που αναζητά τη ρίζα της ανισορροπίας — βελονισμός, βοτανοθεραπεία, βεντούζες και μόξα.</p>
+                    <p data-lang="en">A complete therapeutic system with more than 3,000 years of history that looks for the root of the imbalance — acupuncture, herbal medicine, cupping and moxa.</p>
+                    <span class="service-more" data-lang="el">Διαβάστε περισσότερα &rarr;</span>
+                    <span class="service-more" data-lang="en">Read more &rarr;</span>
+                </a>
             </div>
         </div>
     </div>
@@ -785,41 +880,45 @@
 <section class="testimonials" id="testimonials">
     <div class="container text-center">
         <div class="section-ornament reveal">
-            <span>Εμπιστοσύνη</span>
+            <span data-lang="el">Εμπιστοσύνη</span>
+            <span data-lang="en">Trust</span>
         </div>
-        <h2 class="section-title reveal">Τι λένε οι ασθενείς μου</h2>
-        <p class="section-subtitle reveal">Η εμπιστοσύνη τους είναι η μεγαλύτερη επιβράβευσή μου.</p>
+        <h2 class="section-title reveal" data-lang="el">Τι λένε οι ασθενείς μου</h2>
+        <h2 class="section-title reveal" data-lang="en">What my patients say</h2>
+        <p class="section-subtitle reveal" data-lang="el">Η εμπιστοσύνη τους είναι η μεγαλύτερη επιβράβευσή μου.</p>
+        <p class="section-subtitle reveal" data-lang="en">Their trust is my greatest reward.</p>
         <div class="testimonials-grid">
             <div class="testimonial-card reveal reveal-delay-1">
                 <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p>Η Δρ. Σαλωνίτη είναι ο πρώτος γιατρός που πραγματικά με άκουσε. Με τον βελονισμό βρήκα ανακούφιση από χρόνιους πόνους που με ταλαιπωρούσαν χρόνια. Ένας άνθρωπος με γνήσιο ενδιαφέρον.</p>
+                <p data-lang="el">Η Ζωή μας έχει βοηθήσει όλους στην οικογένειά μας με τη γνώση και την ενσυναίσθησή της. Αρχικά είναι πολύ καλή ακροάτρια. Με τις ερωτήσεις της σε κάνει να αισθάνεσαι ότι όντως θέλει να βρει τρόπο να σε βοηθήσει, χωρίς να σε κάνει να νιώσεις άβολα. Ενημερώνει χωρίς να πιέζει, ψάχνοντας τη καλύτερη λύση. Δοκιμάζοντας τη θεραπεία του βελονισμού στον άντρα μου (που δεν πιστεύει ιδιαίτερα σε όλα αυτά), απαλύνθηκαν οι πόνοι στον ώμο που τους είχε πολύ καιρό. Την ευχαριστούμε.</p>
+                <p data-lang="en">Zoi has helped everyone in our family with her knowledge and her empathy. First of all, she is a very good listener. Her questions make you feel that she genuinely wants to find a way to help you, without ever making you feel uncomfortable. She informs you without pressing, always looking for the best solution. When my husband tried acupuncture (he is not particularly a believer in all this), the shoulder pain he had been carrying for a long time eased. We are grateful to her.</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">ΜΚ</div>
+                    <div class="author-avatar">NM</div>
                     <div class="author-info">
-                        <strong>Μαρία Κ.</strong>
-                        <span>Ασθενής εδώ και 3 χρόνια</span>
+                        <strong>Nicole Chantal Montandon</strong>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card reveal reveal-delay-2">
                 <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p>Αντιμετώπιζα έντονο άγχος και αϋπνία. Ο συνδυασμός βοτανοθεραπείας και βελονισμού μου άλλαξε την καθημερινότητα. Νιώθω ξανά ενέργεια και ηρεμία. Ευγνώμων!</p>
+                <p data-lang="el">Επιστήμονας με άριστη γνώση του αντικειμένου της. Ένας άνθρωπος που ενδιαφέρεται πραγματικά να σε ακούσει και να βοηθήσει με το πρόβλημα που σε απασχολεί.</p>
+                <p data-lang="en">A scientist with excellent command of her field. Someone who genuinely cares to listen to you and to help with the problem that concerns you.</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">ΕΛ</div>
+                    <div class="author-avatar">Α</div>
                     <div class="author-info">
-                        <strong>Ελένη Λ.</strong>
-                        <span>Ασθενής εδώ και 2 χρόνια</span>
+                        <strong data-lang="el">Αλέξανδρος</strong>
+                        <strong data-lang="en">Alexandros</strong>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card reveal reveal-delay-3">
                 <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p>Ζεστός, ανθρώπινος χώρος. Η κυρία Ζωή εξηγεί τα πάντα με υπομονή και δεν σε κάνει ποτέ να νιώσεις βιαστικά. Πραγματικά ξεχωριστή γιατρός — και ως επιστήμονας και ως άνθρωπος.</p>
+                <p data-lang="el">Οι πιο υπέροχες θεραπείες με τη Ζωή· νιώθω πολύ τυχερή που την έχω στη ζωή μου. Επαγγελματίας, ακριβής, ευγενική και υπέροχη — η Ζωή είναι η καλύτερη που ξέρω! Τη συνιστώ ανεπιφύλακτα σε όλους, δεν μπορώ να περιμένω για την επόμενη συνεδρία μου την άλλη εβδομάδα.</p>
+                <p data-lang="en" lang="en">The most amazing treatments with Zoi, feel so lucky to have her in my life. Professional, precise, kind and lovely — Zoi is the best I know! I highly recommend to everyone, can't wait to my next session next week.</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">ΓΝ</div>
+                    <div class="author-avatar">NO</div>
                     <div class="author-info">
-                        <strong>Γιώργος Ν.</strong>
-                        <span>Ασθενής εδώ και 5 χρόνια</span>
+                        <strong>Neta Or</strong>
                     </div>
                 </div>
             </div>
@@ -831,38 +930,57 @@
 <section class="articles" id="articles">
     <div class="container text-center">
         <div class="section-ornament reveal">
-            <span>Γνώση</span>
+            <span data-lang="el">Γνώση</span>
+            <span data-lang="en">Knowledge</span>
         </div>
-        <h2 class="section-title reveal">Άρθρα & Σκέψεις</h2>
-        <p class="section-subtitle reveal">Γράφω τακτικά για θέματα υγείας, πρόληψης και ολιστικής ευεξίας.</p>
+        <h2 class="section-title reveal" data-lang="el">Άρθρα & Σκέψεις</h2>
+        <h2 class="section-title reveal" data-lang="en">Articles & Thoughts</h2>
+        <p class="section-subtitle reveal" data-lang="el">Γράφω τακτικά για θέματα υγείας, πρόληψης και ολιστικής ευεξίας.</p>
+        <p class="section-subtitle reveal" data-lang="en">I write regularly on health, prevention and holistic well-being.</p>
         <div class="articles-grid">
-            <div class="article-card reveal reveal-delay-1">
-                <div class="article-thumb">Εικόνα άρθρου</div>
-                <div class="article-body" style="text-align: left;">
-                    <span class="article-tag">Βελονισμός</span>
-                    <h3>Πώς ο βελονισμός μπορεί να βοηθήσει στη χρόνια ημικρανία</h3>
-                    <p>Μια επιστημονικά τεκμηριωμένη ματιά στη δράση του βελονισμού ως συμπληρωματική θεραπεία για τον χρόνιο πονοκέφαλο...</p>
-                    <span class="article-date">12 Φεβρουαρίου 2026</span>
+            <a class="article-card reveal reveal-delay-1" href="arthra/kineziki-iatriki.html">
+                <div class="article-thumb">
+                    <img src="img/chinese_herbs.jpg" alt="Κινέζικα βότανα">
                 </div>
-            </div>
-            <div class="article-card reveal reveal-delay-2">
-                <div class="article-thumb">Εικόνα άρθρου</div>
                 <div class="article-body" style="text-align: left;">
-                    <span class="article-tag">Βοτανοθεραπεία</span>
-                    <h3>Κινέζικα βότανα και πεπτικό: τι λέει η έρευνα</h3>
-                    <p>Η κινέζικη βοτανοθεραπεία προσφέρει εξατομικευμένες λύσεις για δυσπεψία, ευερέθιστο έντερο και φουσκώματα...</p>
-                    <span class="article-date">28 Ιανουαρίου 2026</span>
+                    <span class="article-tag" data-lang="el">Κινέζικη Ιατρική</span>
+                    <span class="article-tag" data-lang="en">Chinese Medicine</span>
+                    <h3 data-lang="el">Η διαχρονική σοφία της Κινέζικης Ιατρικής στην υπηρεσία της υγείας</h3>
+                    <h3 data-lang="en">The timeless wisdom of Chinese Medicine in the service of health</h3>
+                    <p data-lang="el">Ένα ολοκληρωμένο θεραπευτικό σύστημα με πάνω από 3.000 χρόνια ιστορίας, που αναζητά τη ρίζα της ανισορροπίας και όχι μόνο το σύμπτωμα...</p>
+                    <p data-lang="en">A complete therapeutic system with more than 3,000 years of history, one that looks for the root of the imbalance and not only the symptom...</p>
+                    <span class="article-more" data-lang="el">Διαβάστε το άρθρο &rarr;</span>
+                    <span class="article-more" data-lang="en">Read the article &rarr;</span>
                 </div>
-            </div>
-            <div class="article-card reveal reveal-delay-3">
-                <div class="article-thumb">Εικόνα άρθρου</div>
+            </a>
+            <a class="article-card reveal reveal-delay-2" href="arthra/velonismos-vs-antiflegmonodi.html">
+                <div class="article-thumb">
+                    <img src="img/accupuncture.jpg" alt="Συνεδρία βελονισμού">
+                </div>
                 <div class="article-body" style="text-align: left;">
-                    <span class="article-tag">Πρόληψη</span>
-                    <h3>Ετήσιο check-up: γιατί δεν πρέπει να το αναβάλλετε</h3>
-                    <p>Η πρόληψη σώζει ζωές. Ποιες εξετάσεις χρειάζεστε ανάλογα με την ηλικία σας και πότε πρέπει να ανησυχείτε...</p>
-                    <span class="article-date">10 Ιανουαρίου 2026</span>
+                    <span class="article-tag" data-lang="el">Βελονισμός</span>
+                    <span class="article-tag" data-lang="en">Acupuncture</span>
+                    <h3 data-lang="el">Βελονισμός vs Αντιφλεγμονώδη: μια νέα ματιά στη διαχείριση του πόνου</h3>
+                    <h3 data-lang="en">Acupuncture vs anti-inflammatories: a new look at pain management</h3>
+                    <p data-lang="el">Πρόσφατες κλινικές μελέτες δείχνουν ότι ο βελονισμός δεν είναι μόνο εξίσου αποτελεσματικός, αλλά σε πολλές περιπτώσεις υπερτερεί των κλασικών φαρμακευτικών αγωγών...</p>
+                    <p data-lang="en">Recent clinical studies suggest that acupuncture is not only equally effective, but in many cases outperforms conventional drug treatments...</p>
+                    <span class="article-more" data-lang="el">Διαβάστε το άρθρο &rarr;</span>
+                    <span class="article-more" data-lang="en">Read the article &rarr;</span>
                 </div>
-            </div>
+            </a>
+            <a class="article-card reveal reveal-delay-3" href="arthra/ydrogonomeno-nero.html">
+                <div class="article-thumb article-thumb-deco"><span>H&#8322;</span></div>
+                <div class="article-body" style="text-align: left;">
+                    <span class="article-tag" data-lang="el">Ευεξία</span>
+                    <span class="article-tag" data-lang="en">Well-being</span>
+                    <h3 data-lang="el">Τι είναι το υδρογονωμένο νερό;</h3>
+                    <h3 data-lang="en">What is hydrogen water?</h3>
+                    <p data-lang="el">Η αντιοξειδωτική δράση του μοριακού υδρογόνου, τα οφέλη που καταγράφουν οι μελέτες και τι να προσέξετε όταν επιλέγετε συσκευή...</p>
+                    <p data-lang="en">The antioxidant action of molecular hydrogen, the benefits recorded in studies and what to look for when choosing a device...</p>
+                    <span class="article-more" data-lang="el">Διαβάστε το άρθρο &rarr;</span>
+                    <span class="article-more" data-lang="en">Read the article &rarr;</span>
+                </div>
+            </a>
         </div>
     </div>
 </section>
@@ -872,17 +990,21 @@
     <div class="container">
         <div class="text-center" style="margin-bottom: 3.5rem;">
             <div class="section-ornament reveal">
-                <span>Ραντεβού</span>
+                <span data-lang="el">Ραντεβού</span>
+                <span data-lang="en">Appointments</span>
             </div>
-            <h2 class="section-title reveal">Επικοινωνία</h2>
-            <p class="section-subtitle reveal">Θα χαρώ να σας γνωρίσω. Επικοινωνήστε μαζί μου για να κλείσετε ραντεβού ή για οποιαδήποτε απορία.</p>
+            <h2 class="section-title reveal" data-lang="el">Επικοινωνία</h2>
+            <h2 class="section-title reveal" data-lang="en">Contact</h2>
+            <p class="section-subtitle reveal" data-lang="el">Θα χαρώ να σας γνωρίσω. Επικοινωνήστε μαζί μου για να κλείσετε ραντεβού ή για οποιαδήποτε απορία.</p>
+            <p class="section-subtitle reveal" data-lang="en">I would be glad to meet you. Get in touch to book an appointment or with any question you may have.</p>
         </div>
         <div class="contact-grid">
             <div class="contact-info reveal">
                 <div class="contact-detail">
                     <div class="icon-circle">&#9742;</div>
                     <div class="detail-text">
-                        <strong>Τηλέφωνο</strong>
+                        <strong data-lang="el">Τηλέφωνο</strong>
+                        <strong data-lang="en">Phone</strong>
                         <a href="tel:+302831057937">2831057937</a>
                     </div>
                 </div>
@@ -896,15 +1018,31 @@
                 <div class="contact-detail">
                     <div class="icon-circle">&#9873;</div>
                     <div class="detail-text">
-                        <strong>Διεύθυνση</strong>
-                        <span>Ηγούμενου Γαβριήλ 42, Ρέθυμνο</span>
+                        <strong data-lang="el">Διεύθυνση</strong>
+                        <strong data-lang="en">Address</strong>
+                        <span data-lang="el">Ηγούμενου Γαβριήλ 42, Ρέθυμνο</span>
+                        <span data-lang="en">42 Igoumenou Gavriil St., Rethymno, Crete</span>
                     </div>
                 </div>
                 <div class="contact-hours">
-                    <h4>Ωράριο Λειτουργίας</h4>
-                    <div class="hours-row"><span>Δευτέρα — Παρασκευή</span><span>09:00 — 20:00</span></div>
-                    <div class="hours-row"><span>Σάββατο</span><span>09:00 — 14:00</span></div>
-                    <div class="hours-row"><span>Κυριακή</span><span>Κλειστά</span></div>
+                    <h4 data-lang="el">Ωράριο Λειτουργίας</h4>
+                    <h4 data-lang="en">Opening Hours</h4>
+                    <div class="hours-row">
+                        <span data-lang="el">Δευτέρα — Παρασκευή</span>
+                        <span data-lang="en">Monday — Friday</span>
+                        <span>09:00 — 20:00</span>
+                    </div>
+                    <div class="hours-row">
+                        <span data-lang="el">Σάββατο</span>
+                        <span data-lang="en">Saturday</span>
+                        <span>09:00 — 14:00</span>
+                    </div>
+                    <div class="hours-row">
+                        <span data-lang="el">Κυριακή</span>
+                        <span data-lang="en">Sunday</span>
+                        <span data-lang="el">Κλειστά</span>
+                        <span data-lang="en">Closed</span>
+                    </div>
                 </div>
             </div>
             <div class="contact-map reveal reveal-delay-1">
@@ -917,15 +1055,20 @@
 <!-- ════════ Footer ════════ -->
 <footer>
     <div class="container">
-        <a href="#" class="logo">Ζωή Σαλωνίτη <span>| Ιατρείο</span></a>
-        <p class="tagline">Γενική Ιατρική &middot; Βελονισμός &middot; Κινέζικη Βοτανοθεραπεία</p>
+        <a href="#" class="logo">
+            <span data-lang="el">Ζωή Σαλωνίτη <span class="logo-sub">| Ιατρείο</span></span>
+            <span data-lang="en">Zoi Saloniti <span class="logo-sub">| Practice</span></span>
+        </a>
+        <p class="tagline" data-lang="el">Γενική Ιατρική &middot; Βελονισμός &middot; Κινέζικη Βοτανοθεραπεία</p>
+        <p class="tagline" data-lang="en">General Medicine &middot; Acupuncture &middot; Chinese Herbal Medicine</p>
         <div class="footer-links">
-            <a href="#about">Βιογραφικό</a>
-            <a href="#services">Υπηρεσίες</a>
-            <a href="#articles">Άρθρα</a>
-            <a href="#contact">Επικοινωνία</a>
+            <a href="#about"><span data-lang="el">Βιογραφικό</span><span data-lang="en">About</span></a>
+            <a href="#services"><span data-lang="el">Υπηρεσίες</span><span data-lang="en">Services</span></a>
+            <a href="#articles"><span data-lang="el">Άρθρα</span><span data-lang="en">Articles</span></a>
+            <a href="#contact"><span data-lang="el">Επικοινωνία</span><span data-lang="en">Contact</span></a>
         </div>
-        <p class="copyright">&copy; 2026 Ζωή Σαλωνίτη. Με επιφύλαξη παντός δικαιώματος.</p>
+        <p class="copyright" data-lang="el">&copy; 2026 Ζωή Σαλωνίτη. Με επιφύλαξη παντός δικαιώματος.</p>
+        <p class="copyright" data-lang="en">&copy; 2026 Zoi Saloniti. All rights reserved.</p>
     </div>
 </footer>
 
