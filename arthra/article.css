@@ -75,13 +75,30 @@ nav .nav-inner {
     text-decoration: none; letter-spacing: -.01em;
 }
 .logo .logo-sub { color: var(--clay); font-weight: 400; font-style: italic; }
-.nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.nav-right { display: flex; align-items: center; gap: 1.2rem; }
 .nav-back {
     text-decoration: none; color: var(--text-mid);
     font-size: .88rem; font-weight: 500; transition: color .3s;
     white-space: nowrap;
 }
 .nav-back:hover { color: var(--forest); }
+
+/* Always-visible booking button in the fixed header */
+.nav-cta {
+    display: inline-flex; align-items: center;
+    background: var(--forest); color: var(--white);
+    padding: .58rem 1.3rem; border-radius: 50px;
+    font-size: .82rem; font-weight: 600; letter-spacing: .02em;
+    text-decoration: none; white-space: nowrap;
+    box-shadow: 0 3px 14px rgba(58,90,64,.22);
+    transition: background .3s, transform .3s, box-shadow .3s;
+}
+.nav-cta:hover {
+    background: var(--forest-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(58,90,64,.28);
+}
+.nav-cta-short { display: none; }
 
 /* ── Language switch ── */
 .lang-switch { display: flex; align-items: center; gap: .15rem; }
@@ -286,4 +303,20 @@ footer .copyright {
     .container, nav .nav-inner, .article-hero { padding-left: 1.2rem; padding-right: 1.2rem; }
     .article-header { padding-top: 6.5rem; }
     footer .footer-links a { margin: 0 .6rem; }
+    .nav-right { gap: .5rem; }
+    .nav-back-label { display: none; }
+    .nav-cta { padding: .5rem .95rem; font-size: .76rem; }
+    .nav-cta-long { display: none; }
+    .nav-cta-short { display: inline; }
+    .lang-btn { padding: .3rem .25rem; font-size: .72rem; letter-spacing: .04em; }
+    .logo { font-size: 1.1rem; }
+    .logo .logo-sub { display: none; }
+}
+
+@media (max-width: 400px) {
+    .nav-right { gap: .4rem; }
+    .nav-cta { padding: .45rem .85rem; font-size: .73rem; }
+    .lang-btn { font-size: .68rem; padding: .3rem .2rem; }
+    .logo { font-size: 1rem; }
+    nav .nav-inner { padding-left: 1rem; padding-right: 1rem; }
 }

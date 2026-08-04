@@ -166,6 +166,23 @@
 
         /* ── Language switch ── */
         .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+        /* Always-visible booking button in the fixed header */
+        .nav-cta {
+            display: inline-flex; align-items: center;
+            background: var(--forest); color: var(--white);
+            padding: .58rem 1.3rem; border-radius: 50px;
+            font-size: .82rem; font-weight: 600; letter-spacing: .02em;
+            text-decoration: none; white-space: nowrap;
+            box-shadow: 0 3px 14px rgba(58,90,64,.22);
+            transition: background .3s, transform .3s, box-shadow .3s;
+        }
+        .nav-cta:hover {
+            background: var(--forest-deep);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(58,90,64,.28);
+        }
+        .nav-cta-short { display: none; }
         .lang-switch { display: flex; align-items: center; gap: .15rem; }
         .lang-btn {
             background: none; border: none; cursor: pointer;
@@ -586,21 +603,10 @@
             color: var(--text-mid); text-decoration: none;
         }
         .detail-text a:hover { color: var(--forest); }
-        .contact-hours {
-            background: var(--ivory); border-radius: var(--radius); padding: 1.5rem 1.8rem;
-            margin-top: 1rem;
-            border: 1px solid rgba(58,90,64,.05);
-        }
-        .contact-hours h4 {
-            font-size: .9rem; color: var(--forest); margin-bottom: .8rem;
-            letter-spacing: .03em;
-        }
-        .hours-row {
-            display: flex; justify-content: space-between; padding: .4rem 0;
-            font-size: .88rem; color: var(--text-mid);
-        }
-        .hours-row + .hours-row {
-            border-top: 1px solid rgba(58,90,64,.04);
+        .detail-text .detail-note {
+            display: block; margin-top: .3em;
+            font-size: .82rem; color: var(--clay);
+            font-weight: 500;
         }
         .contact-map {
             border-radius: var(--radius-lg); overflow: hidden;
@@ -691,6 +697,21 @@
             .nav-links.open { display: flex; }
             .hamburger { display: flex; }
             .container { padding: 0 1.2rem; }
+            .nav-right { gap: .5rem; }
+            .nav-cta { padding: .5rem .95rem; font-size: .76rem; }
+            .nav-cta-long { display: none; }
+            .nav-cta-short { display: inline; }
+            .lang-btn { padding: .3rem .25rem; font-size: .72rem; letter-spacing: .04em; }
+            .logo { font-size: 1.1rem; }
+            .logo .logo-sub { display: none; }
+        }
+
+        @media (max-width: 400px) {
+            .nav-right { gap: .4rem; }
+            .nav-cta { padding: .45rem .85rem; font-size: .73rem; }
+            .lang-btn { font-size: .68rem; padding: .3rem .2rem; }
+            .logo { font-size: 1rem; }
+            nav .container { padding: 0 1rem; }
         }
 
         @media (min-width: 701px) and (max-width: 900px) {
@@ -718,6 +739,16 @@
             <li><a href="#contact"><span data-lang="el">Επικοινωνία</span><span data-lang="en">Contact</span></a></li>
         </ul>
         <div class="nav-right">
+            <a href="#contact" class="nav-cta">
+                <span data-lang="el">
+                    <span class="nav-cta-long">Κλείστε Ραντεβού</span>
+                    <span class="nav-cta-short">Ραντεβού</span>
+                </span>
+                <span data-lang="en">
+                    <span class="nav-cta-long">Book an Appointment</span>
+                    <span class="nav-cta-short">Book</span>
+                </span>
+            </a>
             <div class="lang-switch" role="group" aria-label="Γλώσσα / Language">
                 <button type="button" class="lang-btn" data-set-lang="el" aria-pressed="true" lang="el">ΕΛ</button>
                 <span class="lang-sep" aria-hidden="true">/</span>
@@ -979,6 +1010,8 @@
                         <strong data-lang="el">Τηλέφωνο</strong>
                         <strong data-lang="en">Phone</strong>
                         <a href="tel:+302831057937">2831057937</a>
+                        <span class="detail-note" data-lang="el">Καλέστε για να κλείσετε ραντεβού</span>
+                        <span class="detail-note" data-lang="en">Call to book an appointment</span>
                     </div>
                 </div>
                 <div class="contact-detail">
@@ -995,26 +1028,6 @@
                         <strong data-lang="en">Address</strong>
                         <span data-lang="el">Ηγούμενου Γαβριήλ 42, Ρέθυμνο</span>
                         <span data-lang="en">42 Igoumenou Gavriil St., Rethymno, Crete</span>
-                    </div>
-                </div>
-                <div class="contact-hours">
-                    <h4 data-lang="el">Ωράριο Λειτουργίας</h4>
-                    <h4 data-lang="en">Opening Hours</h4>
-                    <div class="hours-row">
-                        <span data-lang="el">Δευτέρα — Παρασκευή</span>
-                        <span data-lang="en">Monday — Friday</span>
-                        <span>09:00 — 20:00</span>
-                    </div>
-                    <div class="hours-row">
-                        <span data-lang="el">Σάββατο</span>
-                        <span data-lang="en">Saturday</span>
-                        <span>09:00 — 14:00</span>
-                    </div>
-                    <div class="hours-row">
-                        <span data-lang="el">Κυριακή</span>
-                        <span data-lang="en">Sunday</span>
-                        <span data-lang="el">Κλειστά</span>
-                        <span data-lang="en">Closed</span>
                     </div>
                 </div>
             </div>
